@@ -1,16 +1,25 @@
 ![GitHub Sprache](https://img.shields.io/badge/Language-Java-orange)
+[![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 
 # isy-datetime
 
+Diese Bibliothek stellt Funktionen für die Anzeige, Eingabe und Speicherung von Datums- und Zeitwerten bereit. 
 
 
 
-## Beschreibung
+## IsyFact
 
+isy-datetime ist ein Teil der IsyFact-Standards, eines Open-Source-Projekts für Softwarelösungen, querschnittliche Anwendungen sowie Programmierbibliotheken und -vorlagen zur Erstellung von Geschäftsanwendungen.
 
 ## Features
 
+Die Repräsentation eines Zeitraums im Sinne des Konzepts wird nicht durch die Java 8 Date and Time API bereitgestellt. Für diesen Zweck stellt isy-datetime die Klasse __Zeitraum__ bereit.
 
+Ein Zeitraum kann aus einem zwei Datumsangaben, zwei Datums- und Zeitangaben oder nur aus Zeitangaben erstellt werden. Das angegebene Ende ist immer exklusive und nicht Teil des Zeitraums. Ein Zeitraum, der nur aus Zeiten besteht, kann nicht länger als 24 Stunden sein, aber über einen Tageswechsel (22:00 – 06:00) gehen. Bei Zeiträumen die nur aus Datumsangaben bestehen, ist die Anfangszeit 00:00 des Anfangstages und die Endzeit 00:00 des Endtages.
+
+Intern werden Anfang und Ende mit Angabe der Zeitzone gespeichert, um die Dauer bei Zeitumstellungen korrekt berechnen zu können. Wird bei der Erstellung keine Zeitzone angegeben, wird Standard-Zeitzone der JVM verwendet.
+
+Zur formatierten Ein- und Ausgabe stellt isy-datetime die Klassen __InFormat__ und __OutFormat bereit__. Diese beinhalten vorkonfigurierte DateTimeFormatter für die im Konzept beschriebene Formate. Die Verarbeitung in der ISO-8601-konformen Darstellung wird direkt durch die Klassen der Java 8 Date and Time API unterstützt.
 
 ## Installation
 
@@ -19,10 +28,12 @@
 ### Dokumentation
 
 
-### Mitwirken
+### Mithelfen
 Wir freuen uns über Beiträge zur Weiterentwicklung von isy-datetime. 
 
 ### Lizenz
+
+
 Dieses Projekt ist unter der Apache-2-Lizenz lizenziert. Weitere Informationen findest du in der [Lizenzdatei](license/LICENSE).
 
 ### Kontakt
@@ -30,4 +41,3 @@ Dieses Projekt ist unter der Apache-2-Lizenz lizenziert. Weitere Informationen f
 
 __Vielen Dank für die Verwendung von isy-datetime!__
 
-© 2024 IsyFact
