@@ -7,14 +7,17 @@
     <groupId>de.bund.bva.isyfact</groupId>
     <artifactId>isy-datetime</artifactId>
     <packaging>jar</packaging>
-    <name>IsyFact: Datum &amp; Zeit</name>
+    <name>IsyFact: Datum und Zeit</name>
     <version>4.0.0-SNAPSHOT</version>
-
 
     <properties>
         <maven.compiler.source>21</maven.compiler.source>
         <maven.compiler.target>21</maven.compiler.target>
-        <maven.compiler.version>3.8.1</maven.compiler.version>
+        <maven.compiler.version>3.11.0</maven.compiler.version>
+
+        <maven.surefire.version>3.1.2</maven.surefire.version>
+        <maven.jar.version>3.3.0</maven.jar.version>
+        <maven.jacoco.version>0.8.10</maven.jacoco.version>
 
         <junit.version>4.13.2</junit.version>
 
@@ -30,5 +33,60 @@
             <scope>test</scope>
         </dependency>
     </dependencies>
+
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>${maven.compiler.version}</version>
+                <configuration>
+                    <source>${maven.compiler.source}</source>
+                    <target>${maven.compiler.target}</target>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>${maven.jar.version}</version>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>${maven.surefire.version}</version>
+                <configuration>
+                    <testSourceDirectory>${project.basedir}/test</testSourceDirectory>
+                    <includes>
+                        <include>**/*.java</include>
+                    </includes>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.jacoco</groupId>
+                <artifactId>jacoco-maven-plugin</artifactId>
+                <version>${maven.jacoco.version}</version>
+                <executions>
+                    <execution>
+                        <id>prepare-agent</id>
+                        <goals>
+                            <goal>prepare-agent</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>report</id>
+                        <phase>test</phase>
+                        <goals>
+                            <goal>report</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+        </plugins>
+    </build>
 
 </project>
