@@ -24,4 +24,25 @@ jobs:
     - name: Maven -> Compilieren, Tests
       run: mvn --batch-mode test --file pom.xml
 
+    - name: Report
+      run: |
+        echo "| Modul | Testabdeckung |" >> $GITHUB_STEP_SUMMARY
+        echo "| --- | --- |" >> $GITHUB_STEP_SUMMARY
+        
+        COUNTER=0
+        SUM=0
+        for REPORT in $(find . -path \*target/site/jacoco/index.html); do
+          MODULE=$(grep -o '<title>[^%].*</title>'  "$REPORT"| sed 's/<\/\?title>//g')
+          COVERAGE=$(grep -o 'Total[^%]*%' "$REPORT" | sed 's/<.*>/ /; s/Total//; s/ //; s/%//')
+          echo "| $MODULE | $COVERAGE % |" >> $GITHUB_STEP_SUMMARY
+          COUNTER=$((COUNTER+1))
+          SUM=$((SUM+COVERAGE))
+        done
 
+    - name: Erstelle Artefakt Test Reports
+      uses: actions/upload-artifact@v4
+      with:
+        name:  Test Reports
+        path: |
+          ${{ github.workspace }}/**/target/site/jacoco/jacoco.xml
+          ${{ github.workspace }}/**/target/surefire-reports/*.xml
