@@ -39,10 +39,14 @@ jobs:
           SUM=$((SUM+COVERAGE))
         done
 
+        coverage=$(grep -A 1 "coverage" \*target/site/jacoco/test/jacoco.xml | tail -n 1 | grep -Eo "[0-9]+\.[0-9]+")
+
+        echo "Code-Abdeckung: $coverage%"        
+
     - name: Erstelle Artefakt Test Reports
       uses: actions/upload-artifact@v4
       with:
-        name:  Test Reports
+        name:  Test-Reports
         path: |
           ${{ github.workspace }}/**/target/site/jacoco/jacoco.xml
           ${{ github.workspace }}/**/target/surefire-reports/*.xml
