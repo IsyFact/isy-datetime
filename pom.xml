@@ -16,7 +16,6 @@
         <maven.compiler.version>3.11.0</maven.compiler.version>
 
         <maven.surefire.version>3.1.2</maven.surefire.version>
-        <maven.jar.version>3.3.0</maven.jar.version>
         <maven.jacoco.version>0.8.10</maven.jacoco.version>
 
         <junit.version>4.13.2</junit.version>
@@ -45,12 +44,6 @@
                     <source>${maven.compiler.source}</source>
                     <target>${maven.compiler.target}</target>
                 </configuration>
-            </plugin>
-
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-jar-plugin</artifactId>
-                <version>${maven.jar.version}</version>
             </plugin>
 
             <plugin>
