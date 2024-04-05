@@ -47,3 +47,9 @@ jobs:
         path: |
           ${{ github.workspace }}/**/target/site/jacoco/jacoco.xml
           ${{ github.workspace }}/**/target/surefire-reports/*.xml
+
+  sonarcloud-scan:
+    needs: [build]
+    uses: IsyFact/isyfact-standards/.github/workflows/sonarcloud_scan_template.yml@feature/ISY-969-sonarcloud_integration_for_feature_workflow
+    secrets:
+      SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
