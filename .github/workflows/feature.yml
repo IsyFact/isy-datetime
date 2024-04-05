@@ -1,5 +1,4 @@
-name: Compilieren und Tests
-run-name: Build gestartet durch (${{ github.actor }})
+name: Compile and Tests
 
 on:
   workflow_dispatch:
@@ -14,7 +13,7 @@ jobs:
 
     steps:
     - uses: actions/checkout@v4
-    - name: JDK 21 einrichten
+    - name: Set up JDK 21
       uses: actions/setup-java@v4
       with:
         java-version: '21'
@@ -40,10 +39,10 @@ jobs:
         done
    
 
-    - name: Erstelle Artefakt Test Reports
+    - name: Upload Reports
       uses: actions/upload-artifact@v4
       with:
-        name:  Test-Reports
+        name:  Test Reports
         path: |
           ${{ github.workspace }}/**/target/site/jacoco/jacoco.xml
           ${{ github.workspace }}/**/target/surefire-reports/*.xml
@@ -51,5 +50,7 @@ jobs:
   sonarcloud-scan:
     needs: [build]
     uses: IsyFact/isyfact-standards/.github/workflows/sonarcloud_scan_template.yml@feature/ISY-969-sonarcloud_integration_for_feature_workflow
+    with:
+      jdk-version: 21
     secrets:
       SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
