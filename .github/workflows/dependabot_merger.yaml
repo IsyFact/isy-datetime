@@ -1,0 +1,23 @@
+name: Dependabot Merger
+
+on:
+  push:
+    branches:
+      - 'development'
+
+permissions:
+  pull-requests: write
+  issues: write
+  repository-projects: write
+
+jobs:
+  dependabot:
+    name: 'Dependabot'
+    runs-on: ubuntu-latest
+    if: ${{ github.actor == 'dependabot(bot)' && github.event_name == 'pull_request'}}
+    steps:
+      - name: Enable auto-merge for Dependabot Pull Requests
+        run: gh pr merge --auto --merge "$PR_URL"
+        env:
+          PR_URL: ${{github.event.pull_request.html_url}}
+          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
