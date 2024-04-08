@@ -3,8 +3,10 @@ updates:
   - package-ecosystem: maven
     directory: "/"
     schedule:
-      interval: weekly
+      interval: daily
+    ignore:
+        - update-types: [ "version-update:semver-major" ]
   - package-ecosystem: github-actions
-    directory: "/workflows"
+    directory: "/"
     schedule:
-      interval: weekly
+      interval: daily
