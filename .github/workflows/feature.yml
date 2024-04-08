@@ -1,55 +1,14 @@
-name: Compile and Tests
+name: Feature - Compile, Test, SonarCloudScan
 
 on:
-  workflow_dispatch:
   push:
     branches:
       - feature/*
+  workflow_dispatch:
 
 jobs:
-  build:
-
-    runs-on: ubuntu-latest
-
-    steps:
-    - uses: actions/checkout@v4
-    - name: Set up JDK 21
-      uses: actions/setup-java@v4
-      with:
-        java-version: '21'
-        distribution: 'temurin'
-        cache: maven
-
-    - name: Maven -> Compilieren, Tests
-      run: mvn --batch-mode test --file pom.xml
-
-    - name: Report
-      run: |
-        echo "| Modul | Testabdeckung |" >> $GITHUB_STEP_SUMMARY
-        echo "| --- | --- |" >> $GITHUB_STEP_SUMMARY
-        
-        COUNTER=0
-        SUM=0
-        for REPORT in $(find . -path \*target/site/jacoco/index.html); do
-          MODULE=$(grep -o '<title>[^%].*</title>'  "$REPORT"| sed 's/<\/\?title>//g')
-          COVERAGE=$(grep -o 'Total[^%]*%' "$REPORT" | sed 's/<.*>/ /; s/Total//; s/ //; s/%//')
-          echo "| $MODULE | $COVERAGE % |" >> $GITHUB_STEP_SUMMARY
-          COUNTER=$((COUNTER+1))
-          SUM=$((SUM+COVERAGE))
-        done
-   
-
-    - name: Upload Reports
-      uses: actions/upload-artifact@v4
-      with:
-        name:  Test Reports
-        path: |
-          ${{ github.workspace }}/**/target/site/jacoco/jacoco.xml
-          ${{ github.workspace }}/**/target/surefire-reports/*.xml
-
-  sonarcloud-scan:
-    needs: [build]
-    uses: IsyFact/isyfact-standards/.github/workflows/sonarcloud_scan_template.yml@feature/ISY-969-sonarcloud_integration_for_feature_workflow
+  MavenBuild:
+    uses: IsyFact/isyfact-standards/.github/workflows/maven_build_template.yml@master
     with:
       jdk-version: 21
     secrets:
