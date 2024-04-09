@@ -23,7 +23,6 @@
 
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <sonar.maven.version>3.9.1.2184</sonar.maven.version>
     </properties>
 
     <dependencies>
@@ -86,13 +85,6 @@
                     </execution>
                 </executions>
             </plugin>
-
-            <plugin>
-                <groupId>org.sonarsource.scanner.maven</groupId>
-                <artifactId>sonar-maven-plugin</artifactId>
-                <version>${sonar.maven.version}</version>
-            </plugin>
-
         </plugins>
     </build>
 
