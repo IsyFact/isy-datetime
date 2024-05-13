@@ -19,3 +19,15 @@ jobs:
       jdk-version: 21
     secrets:
       SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+
+  Snapshot:
+    if: github.event_name == 'push'
+    needs: [MavenBuild]
+    uses: IsyFact/isyfact-standards/.github/workflows/maven_deploy_template.yml@master
+    with:
+      jdk-version: 21
+      maven-opts: '-DaltDeploymentRepository=github::default::https://maven.pkg.github.com/IsyFact/isy-datetime'
+      deploy-server-id: github
+    secrets:
+      DEPLOY_SERVER_USER_NAME: ${{ github.actor }}
+      DEPLOY_SERVER_TOKEN: ${{ secrets.GITHUB_TOKEN }}
