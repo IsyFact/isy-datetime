@@ -28,7 +28,7 @@ jobs:
       SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
 
   Snapshot:
-    if: github.event_name == 'push'
+    if: github.event_name == 'push' && github.ref == 'refs/heads/develop'
     needs: [Version, MavenBuild]
     uses: IsyFact/isyfact-standards/.github/workflows/maven_deploy_template.yml@master
     with:
