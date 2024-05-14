@@ -13,18 +13,26 @@ on:
   workflow_dispatch:
 
 jobs:
+  Version:
+    uses: IsyFact/isyfact-standards/.github/workflows/next_version.yml@master
+    with:
+      next-version: 4.0.0
+
   MavenBuild:
+    needs: [Version]
     uses: IsyFact/isyfact-standards/.github/workflows/maven_build_template.yml@master
     with:
+      version: ${{ needs.Version.outputs.next-version }}
       jdk-version: 21
     secrets:
       SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
 
   Snapshot:
     if: github.event_name == 'push'
-    needs: [MavenBuild]
+    needs: [Version, MavenBuild]
     uses: IsyFact/isyfact-standards/.github/workflows/maven_deploy_template.yml@master
     with:
+      version: ${{ needs.Version.outputs.next-version }}
       jdk-version: 21
       maven-opts: '-DaltDeploymentRepository=github::default::https://maven.pkg.github.com/IsyFact/isy-datetime'
       deploy-server-id: github
