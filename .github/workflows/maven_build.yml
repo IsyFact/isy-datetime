@@ -7,6 +7,7 @@ on:
       - develop
       - release/**
       - hotfix/**
+      - feature/IFS-3719_snapshot_rc_artifacts
   pull_request:
     branches:
       - develop
@@ -19,23 +20,23 @@ jobs:
       base-version: 4.0.0
       branch-name: ${{ github.ref_name }}
 
-  MavenBuild:
-    needs: [Version]
-    uses: IsyFact/isyfact-standards/.github/workflows/maven_build_template.yml@master
-    with:
-      jdk-version: 21
-    secrets:
-      SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+#  MavenBuild:
+#    needs: [Version]
+#    uses: IsyFact/isyfact-standards/.github/workflows/maven_build_template.yml@master
+#    with:
+#      jdk-version: 21
+#    secrets:
+#      SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
 
-  ReleaseCandidate:
-    if: github.event_name == 'push' && startsWith(github.ref, 'refs/heads/release/')
-    needs: [Version, MavenBuild]
-    uses: IsyFact/isyfact-standards/.github/workflows/maven_deploy_template.yml@feature/IFS-3719_snapshot_rc_artifacts
-    with:
-      version: ${{ needs.Version.outputs.next-version }}
-      jdk-version: 21
-      maven-opts: '-DaltDeploymentRepository=github::default::https://maven.pkg.github.com/IsyFact/isy-datetime'
-      deploy-server-id: github
-    secrets:
-      DEPLOY_SERVER_USER_NAME: ${{ github.actor }}
-      DEPLOY_SERVER_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+#  ReleaseCandidate:
+#    if: github.event_name == 'push' && startsWith(github.ref, 'refs/heads/release/')
+#    needs: [Version, MavenBuild]
+#    uses: IsyFact/isyfact-standards/.github/workflows/maven_deploy_template.yml@feature/IFS-3719_snapshot_rc_artifacts
+#    with:
+#      version: ${{ needs.Version.outputs.next-version }}
+#      jdk-version: 21
+#      maven-opts: '-DaltDeploymentRepository=github::default::https://maven.pkg.github.com/IsyFact/isy-datetime'
+#      deploy-server-id: github
+#    secrets:
+#      DEPLOY_SERVER_USER_NAME: ${{ github.actor }}
+#      DEPLOY_SERVER_TOKEN: ${{ secrets.GITHUB_TOKEN }}
