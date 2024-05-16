@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>de.bund.bva.isyfact</groupId>
-    <artifactId>isy-datetime-new</artifactId>
+    <artifactId>isyfact-datetime</artifactId>
     <packaging>jar</packaging>
     <name>IsyFact: Datum und Zeit</name>
     <version>4.0.0-SNAPSHOT</version>
