@@ -28,15 +28,19 @@ jobs:
 #    secrets:
 #      SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
 
-#  ReleaseCandidate:
+  ReleaseCandidate:
 #    if: github.event_name == 'push' && startsWith(github.ref, 'refs/heads/release/')
-#    needs: [Version, MavenBuild]
+    needs: [Version]
 #    uses: IsyFact/isyfact-standards/.github/workflows/maven_deploy_template.yml@feature/IFS-3719_snapshot_rc_artifacts
 #    with:
 #      version: ${{ needs.Version.outputs.next-version }}
 #      jdk-version: 21
 #      maven-opts: '-DaltDeploymentRepository=github::default::https://maven.pkg.github.com/IsyFact/isy-datetime'
 #      deploy-server-id: github
+    runs-on: ubuntu-latest
+    steps:
+      - name: Echo Next Version
+        run: echo "The next version is ${{ needs.Version.outputs.next-version }}"
 #    secrets:
 #      DEPLOY_SERVER_USER_NAME: ${{ github.actor }}
 #      DEPLOY_SERVER_TOKEN: ${{ secrets.GITHUB_TOKEN }}
