@@ -18,7 +18,6 @@ jobs:
     uses: IsyFact/isyfact-standards/.github/workflows/next_version.yml@feature/IFS-3719_snapshot_rc_artifacts
     with:
       base-version: 4.0.0
-      branch-name: ${{ github.ref_name }}
       calculate-rc: true
 
 #  MavenBuild:
