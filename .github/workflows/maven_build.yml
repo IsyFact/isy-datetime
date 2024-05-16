@@ -19,6 +19,7 @@ jobs:
     with:
       base-version: 4.0.0
       branch-name: ${{ github.ref_name }}
+      calculate-rc: true
 
 #  MavenBuild:
 #    needs: [Version]
