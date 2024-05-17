@@ -36,6 +36,7 @@ jobs:
       jdk-version: 21
       maven-opts: '-DaltDeploymentRepository=github::default::https://maven.pkg.github.com/IsyFact/isy-datetime'
       deploy-server-id: github
+      sbom: true
     secrets:
       DEPLOY_SERVER_USER_NAME: ${{ github.actor }}
       DEPLOY_SERVER_TOKEN: ${{ secrets.GITHUB_TOKEN }}
