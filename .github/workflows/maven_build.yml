@@ -16,8 +16,8 @@ jobs:
   Version:
     uses: IsyFact/isyfact-standards/.github/workflows/next_version.yml@master
     with:
-      base-version: 4.0.0
-      calculate-rc: true
+      next-version: 4.0.0
+      calculate-rc: ${{ startsWith(github.ref, 'refs/heads/release/') }}
 
   MavenBuild:
     needs: [Version]
@@ -27,8 +27,8 @@ jobs:
     secrets:
       SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
 
-  ReleaseCandidate:
-    if: github.event_name == 'push' && startsWith(github.ref, 'refs/heads/release/')
+  Deploy:
+    if: github.event_name == 'push' && (github.ref == 'refs/heads/develop' || startsWith(github.ref, 'refs/heads/release/'))
     needs: [MavenBuild, Version]
     uses: IsyFact/isyfact-standards/.github/workflows/maven_deploy_template.yml@master
     with:
@@ -36,7 +36,7 @@ jobs:
       jdk-version: 21
       maven-opts: '-DaltDeploymentRepository=github::default::https://maven.pkg.github.com/IsyFact/isy-datetime'
       deploy-server-id: github
-      sbom: true
+      sbom: ${{ startsWith(github.ref, 'refs/heads/release/') }}
     secrets:
       DEPLOY_SERVER_USER_NAME: ${{ github.actor }}
       DEPLOY_SERVER_TOKEN: ${{ secrets.GITHUB_TOKEN }}
