@@ -3,9 +3,7 @@ on:
   pull_request:
     branches:
       - develop
-  push:
-    branches:
-      - hotfix/**
+      - master
 
 jobs:
   DependencyReview:
