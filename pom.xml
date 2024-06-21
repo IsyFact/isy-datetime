@@ -6,9 +6,36 @@
 
     <groupId>de.bund.bva.isyfact</groupId>
     <artifactId>isy-datetime</artifactId>
-    <packaging>jar</packaging>
-    <name>IsyFact: Datum und Zeit</name>
     <version>${revision}</version>
+    <packaging>jar</packaging>
+
+    <name>IsyFact: Datum und Zeit</name>
+    <description>
+        IsyFact: Datum und Zeit stellt Funktionen für die Anzeige, Eingabe und Speicherung von Datums- und Zeitwerten bereit.
+    </description>
+    <url>http://isyfact.de</url>
+
+    <licenses>
+        <license>
+            <name>Apache License, Version 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0</url>
+        </license>
+    </licenses>
+
+    <developers>
+        <developer>
+            <name>IsyFact-Team</name>
+            <email>isyfact@bva.bund.de</email>
+            <organization>Bundesverwaltungsamt (BVA)</organization>
+            <organizationUrl>https://www.bva.bund.de</organizationUrl>
+        </developer>
+    </developers>
+
+    <scm>
+        <connection>scm:git:git://github.com/IsyFact/isy-datetime.git</connection>
+        <developerConnection>scm:git:ssh://github.com:IsyFact/isy-datetime.git</developerConnection>
+        <url>https://github.com/IsyFact/isy-datetime</url>
+    </scm>
 
     <properties>
         <revision>4.0.0-SNAPSHOT</revision>
@@ -38,7 +65,6 @@
             <scope>test</scope>
         </dependency>
     </dependencies>
-
 
     <build>
         <pluginManagement>
