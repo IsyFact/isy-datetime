@@ -51,7 +51,6 @@
         <maven.javadoc.plugin.version>3.3.2</maven.javadoc.plugin.version>
         <maven.source.plugin.version>3.2.1</maven.source.plugin.version>
         <junit.version>4.13.2</junit.version>
-        <commons-text.version>1.10.0</commons-text.version>
 
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
@@ -236,7 +235,7 @@
                         <configuration>
                             <serverId>ossrh</serverId>
                             <nexusUrl>https://oss.sonatype.org/</nexusUrl>
-                            <autoReleaseAfterClose>true</autoReleaseAfterClose>
+                            <autoReleaseAfterClose>false</autoReleaseAfterClose>
                         </configuration>
                     </plugin>
                 </plugins>
