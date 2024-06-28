@@ -1,0 +1,7 @@
+name: isy-datetime-doc
+title: isy-datetime Dokumentation
+version: '4.0.0 SNAPSHOT'
+display_version: '4.0.0 SNAPSHOT'
+start_page: ROOT:konzept/konzept.adoc
+nav:
+  - modules/ROOT/nav.adoc
