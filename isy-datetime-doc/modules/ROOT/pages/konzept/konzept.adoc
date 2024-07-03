@@ -1,7 +1,0 @@
-= Konzept isy-datetime
-
-Hier finden Sie nach Umzug von isy-datetime das
-Konzept der Komponente.
-
-Bis zum Abschluss der Arbeiten finden Sie das Konzept an der bisherigen Stelle der 
-https://isyfact.github.io/isyfact-standards-doku/dev/isy-datetime/konzept/master.html[IsyFact Dokumentation]
