@@ -5,3 +5,8 @@ display_version: '4.0.0 SNAPSHOT'
 start_page: ROOT:konzept/master.adoc
 nav:
   - modules/ROOT/nav.adoc
+ui:
+  bundle:
+    url: https://gitlab.com/antora/antora-ui-default/-/jobs/artifacts/HEAD/raw/build/ui-bundle.zip?job=bundle-stable
+    snapshot: true
+  supplemental_files: ./antora-ui/supplemental-ui
