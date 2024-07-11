@@ -3,7 +3,7 @@ site:
 
 content:
   sources:
-    - url: ../
+    - url: ../../
       branches:
         - main
 ui:
