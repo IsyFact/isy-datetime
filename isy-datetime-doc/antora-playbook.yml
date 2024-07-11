@@ -1,0 +1,17 @@
+site:
+  title: isy-datetime Dokumentation
+
+content:
+  sources:
+    - url: .
+      branches:
+        - main
+ui:
+  bundle:
+    url: https://gitlab.com/antora/antora-ui-default/-/jobs/artifacts/HEAD/raw/build/ui-bundle.zip?job=bundle-stable
+    snapshot: true
+  supplemental_files: https://github.com/IsyFact/isyfact.github.io/tree/0504ddec6394c49ca74cfd86428aaa322a19eba4/antora-ui/supplemental-ui
+
+asciidoc:
+  attributes:
+    version: 4.0.0

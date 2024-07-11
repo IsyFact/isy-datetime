@@ -20,4 +20,4 @@ jobs:
         run: npm install -g @antora/cli @antora/site-generator-default
 
       - name: Run Antora
-        run: antora isy-datetime-doc/antora.yml
+        run: antora isy-datetime-doc/antora-playbook.yml
