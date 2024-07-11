@@ -16,6 +16,9 @@ jobs:
         with:
           node-version: '22'
 
+      - name: Download Supplement Files
+        run: curl https://github.com/IsyFact/isyfact.github.io/tree/0504ddec6394c49ca74cfd86428aaa322a19eba4/antora-ui/supplemental-ui
+
       - name: Install Antora CLI
         run: npm install -g @antora/cli @antora/site-generator
 
