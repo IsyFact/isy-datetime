@@ -1,8 +1,9 @@
 name: PR-Agent
+
 on:
   pull_request:
-    branches:
-      - develop
+    types: [opened, reopened, ready_for_review]
+  issue_comment:
 
 jobs:
   pr_agent_job:
