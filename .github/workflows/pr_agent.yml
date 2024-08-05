@@ -1,8 +1,8 @@
 name: PR-Agent
 on:
-  push:
+  pull_request:
     branches:
-      - msg-Tomaszewski-patch-1
+      - develop
 
 jobs:
   pr_agent_job:
