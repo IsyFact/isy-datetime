@@ -4,6 +4,9 @@ on:
   push:
     branches:
       - feature/IFS-2857_docu_warnings_visibility
+  pull_request:
+    branches:
+      - develop
 
 jobs:
   DocsBuild:
