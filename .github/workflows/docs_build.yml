@@ -8,7 +8,5 @@ on:
 jobs:
   DocsBuild:
     uses: IsyFact/isy-github-actions-templates/.github/workflows/docs_build_template.yml@feature/IFS-2857_docu_warnings_visibility
-    with:
-      failure_level: "error"
     secrets:
       ANTORA_TRIGGER_TOKEN: ${{ secrets.ANTORA_TRIGGER_TOKEN }}
