@@ -1,12 +1,9 @@
 [![License](https://img.shields.io/badge/License-Apache_2.0-orange)](https://opensource.org/licenses/Apache-2.0)
 ![GitHub Sprache](https://img.shields.io/badge/Language-Java_17-orange)
 
-
 # isy-datetime
 
-Diese Bibliothek stellt Funktionen für die Anzeige, Eingabe und Speicherung von Datums- und Zeitwerten bereit. 
-
-
+Diese Bibliothek stellt Funktionen für die Anzeige, Eingabe und Speicherung von Datums- und Zeitwerten bereit.
 
 ## IsyFact
 
@@ -24,23 +21,18 @@ Zur formatierten Ein- und Ausgabe stellt isy-datetime die Klassen __InFormat__ u
 
 ## Installation
 
-
-
 ### Dokumentation
 Die Dokumentation zu Konzept und Nutzungsvorgaben des IsyFact Moduls isy-datetime ist auf den Seiten  
-[Konzept](isy-datetime-doc/modules/ROOT/pages/konzept/master.adoc) und [Nutzungsvorgaben](isy-datetime-doc/modules/ROOT/pages/nutzungsvorgaben/master.adoc) zu finden.
-
+[Konzept](docs/modules/ROOT/pages/konzept/master.adoc) und [Nutzungsvorgaben](docs/modules/ROOT/pages/nutzungsvorgaben/master.adoc) zu finden.
 
 ### Mithelfen
 Wir freuen uns über Beiträge zur Weiterentwicklung von isy-datetime. 
 
 ### Lizenz
 
-
 Dieses Projekt ist unter der Apache-2-Lizenz lizenziert. Weitere Informationen findest du in der [Lizenzdatei](license/LICENSE).
 
 ### Kontakt
-
 
 __Vielen Dank für die Verwendung von isy-datetime!__
 
