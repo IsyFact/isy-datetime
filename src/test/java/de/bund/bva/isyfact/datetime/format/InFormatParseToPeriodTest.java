@@ -32,7 +32,7 @@ public class InFormatParseToPeriodTest {
     public Period expected;
 
     @Test
-    public void parseToPeriod() throws Exception {
+    public void parseToPeriod() {
         assertEquals(expected, InFormat.parseToPeriod(input));
     }
 }

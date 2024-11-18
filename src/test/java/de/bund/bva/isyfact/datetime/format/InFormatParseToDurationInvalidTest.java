@@ -37,7 +37,7 @@ public class InFormatParseToDurationInvalidTest {
     public long errorIndex;
 
     @Test
-    public void parseToDuration() throws Exception {
+    public void parseToDuration() {
         try {
             InFormat.parseToDuration(input);
             fail();

@@ -35,7 +35,7 @@ public class InFormatParseToPeriodInvalidTest {
     public long errorIndex;
 
     @Test
-    public void parseToPeriod() throws Exception {
+    public void parseToPeriod() {
         try {
             InFormat.parseToPeriod(input);
             fail();

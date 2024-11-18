@@ -15,14 +15,14 @@ import org.junit.Test;
 public class UngewissesDatumTest {
 
     @Test
-    public void leer() throws Exception {
+    public void leer() {
         UngewissesDatum leer = UngewissesDatum.leer();
 
         assertTrue(leer.isLeer());
     }
 
     @Test
-    public void ofJahr() throws Exception {
+    public void ofJahr() {
         UngewissesDatum nurJahr = UngewissesDatum.of(2017);
 
         assertFalse(nurJahr.isLeer());
@@ -31,7 +31,7 @@ public class UngewissesDatumTest {
     }
 
     @Test
-    public void ofJahrMonat() throws Exception {
+    public void ofJahrMonat() {
         UngewissesDatum jahrMonat = UngewissesDatum.of(2016, 2);
 
         assertFalse(jahrMonat.isLeer());
@@ -40,7 +40,7 @@ public class UngewissesDatumTest {
     }
 
     @Test
-    public void ofJahrMonatTag() throws Exception {
+    public void ofJahrMonatTag() {
         UngewissesDatum jahrMontagTag = UngewissesDatum.of(2017, 8, 1);
 
         assertFalse(jahrMontagTag.isLeer());
@@ -49,7 +49,7 @@ public class UngewissesDatumTest {
     }
 
     @Test
-    public void ofLocalDate() throws Exception {
+    public void ofLocalDate() {
         UngewissesDatum ofLocalDate = UngewissesDatum.of(LocalDate.of(2017, 8, 1), LocalDate.of(2017, 8, 31));
 
         assertFalse(ofLocalDate.isLeer());
@@ -63,27 +63,27 @@ public class UngewissesDatumTest {
     }
 
     @Test(expected = NullPointerException.class)
-    public void ofLocalDateNullArguments() throws Exception {
+    public void ofLocalDateNullArguments() {
         UngewissesDatum.of(null, null);
     }
 
     @Test(expected = DateTimeException.class)
-    public void ofLocalDateAnfageNachEnde() throws Exception {
+    public void ofLocalDateAnfageNachEnde() {
         UngewissesDatum.of(LocalDate.of(2017, 8, 1), LocalDate.of(2017, 7, 1));
     }
 
     @Test(expected = DateTimeException.class)
-    public void ofLocalDateJahreVerschieden() throws Exception {
+    public void ofLocalDateJahreVerschieden() {
         UngewissesDatum.of(LocalDate.of(2017, 1, 1), LocalDate.of(2018, 8, 1));
     }
 
     @Test(expected = NullPointerException.class)
-    public void parseNullArgument() throws Exception {
+    public void parseNullArgument() {
         UngewissesDatum.parse(null);
     }
 
     @Test
-    public void getJahr() throws Exception {
+    public void getJahr() {
         UngewissesDatum datum = UngewissesDatum.leer();
         assertEquals(Optional.empty(), datum.getJahr());
 
@@ -95,7 +95,7 @@ public class UngewissesDatumTest {
     }
 
     @Test
-    public void getMonat() throws Exception {
+    public void getMonat() {
         UngewissesDatum datum = UngewissesDatum.leer();
         assertEquals(Optional.empty(), datum.getMonat());
 
@@ -110,7 +110,7 @@ public class UngewissesDatumTest {
     }
 
     @Test
-    public void getTag() throws Exception {
+    public void getTag() {
         UngewissesDatum datum = UngewissesDatum.leer();
         assertEquals(Optional.empty(), datum.getTag());
 
@@ -122,7 +122,7 @@ public class UngewissesDatumTest {
     }
 
     @Test
-    public void toLocalDate() throws Exception {
+    public void toLocalDate() {
         UngewissesDatum datum = UngewissesDatum.leer();
         assertEquals(Optional.empty(), datum.toLocalDate());
 

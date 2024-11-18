@@ -83,7 +83,7 @@ public class InFormatParseToLocalDateTimeTest {
     public LocalDateTime expected;
 
     @Test
-    public void parseToLocalDateTime() throws Exception {
+    public void parseToLocalDateTime() {
         assertEquals(expected, InFormat.parseToLocalDateTime(input));
     }
 }

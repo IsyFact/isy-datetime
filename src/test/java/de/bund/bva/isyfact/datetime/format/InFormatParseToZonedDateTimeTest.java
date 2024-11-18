@@ -39,7 +39,7 @@ public class InFormatParseToZonedDateTimeTest {
     public ZonedDateTime expected;
 
     @Test
-    public void parseToZonedDateTime() throws Exception {
+    public void parseToZonedDateTime() {
         assertEquals(expected, InFormat.parseToZonedDateTime(input));
     }
 }

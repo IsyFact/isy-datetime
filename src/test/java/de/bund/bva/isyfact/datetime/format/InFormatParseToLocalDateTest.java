@@ -32,7 +32,7 @@ public class InFormatParseToLocalDateTest {
     public LocalDate expected;
 
     @Test
-    public void parseToLocalDate() throws Exception {
+    public void parseToLocalDate() {
         assertEquals(expected, InFormat.parseToLocalDate(input));
     }
 }

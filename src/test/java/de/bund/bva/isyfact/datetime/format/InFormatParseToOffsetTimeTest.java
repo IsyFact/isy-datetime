@@ -40,7 +40,7 @@ public class InFormatParseToOffsetTimeTest {
     public OffsetTime expected;
 
     @Test
-    public void parseToOffsetTime() throws Exception {
+    public void parseToOffsetTime() {
         assertEquals(expected, InFormat.parseToOffsetTime(input));
     }
 }

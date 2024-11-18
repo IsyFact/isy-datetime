@@ -37,7 +37,7 @@ public class InFormatParseToDurationTest {
     public Duration expected;
 
     @Test
-    public void parseToDuration() throws Exception {
+    public void parseToDuration() {
         assertEquals(expected, InFormat.parseToDuration(input));
     }
 }

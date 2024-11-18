@@ -38,7 +38,7 @@ public class InFormatParseToLocalTimeTest {
     public LocalTime expected;
 
     @Test
-    public void parseToLocalTime() throws Exception {
+    public void parseToLocalTime() {
         assertEquals(expected, InFormat.parseToLocalTime(input));
     }
 }
