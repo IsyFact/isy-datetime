@@ -42,7 +42,7 @@ public class TestClockTest {
     private static final ZonedDateTime zonedDateTime = ZonedDateTime.of(localDateTime, UTC);
 
     @Test
-    public void atInstant() throws Exception {
+    public void atInstant() {
         TestClock clock = TestClock.at(instant, UTC);
 
         assertEquals(instant, clock.instant());
@@ -50,7 +50,7 @@ public class TestClockTest {
     }
 
     @Test
-    public void atLocalDateTime() throws Exception {
+    public void atLocalDateTime() {
         TestClock testClock = TestClock.at(localDateTime);
 
         assertEquals(ZonedDateTime.of(localDateTime, ZoneId.systemDefault()).toInstant(),
@@ -59,7 +59,7 @@ public class TestClockTest {
     }
 
     @Test
-    public void atLocalDateTimeWithZone() throws Exception {
+    public void atLocalDateTimeWithZone() {
         TestClock clock = TestClock.at(localDateTime, BERLIN);
 
         assertEquals(ZonedDateTime.of(localDateTime, BERLIN).toInstant(), clock.instant());
@@ -67,7 +67,7 @@ public class TestClockTest {
     }
 
     @Test
-    public void atOffsetDateTime() throws Exception {
+    public void atOffsetDateTime() {
         TestClock clock = TestClock.at(zonedDateTime.toOffsetDateTime());
 
         assertEquals(zonedDateTime.toInstant(), clock.instant());
@@ -75,7 +75,7 @@ public class TestClockTest {
     }
 
     @Test
-    public void atZonedDateTime() throws Exception {
+    public void atZonedDateTime() {
         TestClock clock = TestClock.at(zonedDateTime);
 
         assertEquals(zonedDateTime.toInstant(), clock.instant());
@@ -83,7 +83,7 @@ public class TestClockTest {
     }
 
     @Test
-    public void nowWithZone() throws Exception {
+    public void nowWithZone() {
         Instant nowNanosNull = ZonedDateTime.ofInstant(Instant.now(), BERLIN).withNano(0).toInstant();
         TestClock clock = TestClock.now(BERLIN);
 
@@ -92,7 +92,7 @@ public class TestClockTest {
     }
 
     @Test
-    public void now() throws Exception {
+    public void now() {
         Instant nowNanosNull =
             ZonedDateTime.ofInstant(Instant.now(), ZoneId.systemDefault()).withNano(0).toInstant();
         TestClock clock = TestClock.now();
@@ -103,7 +103,7 @@ public class TestClockTest {
     }
 
     @Test
-    public void advanceByDuration() throws Exception {
+    public void advanceByDuration() {
         Duration duration = Duration.ofSeconds(50);
         TestClock clock = TestClock.at(zonedDateTime);
 
@@ -113,7 +113,7 @@ public class TestClockTest {
     }
 
     @Test
-    public void advanceByPeriod() throws Exception {
+    public void advanceByPeriod() {
         Period period = Period.ofDays(5);
         TestClock clock = TestClock.at(zonedDateTime);
 
@@ -123,14 +123,14 @@ public class TestClockTest {
     }
 
     @Test
-    public void toStringTest() throws Exception {
+    public void toStringTest() {
         TestClock clock = TestClock.at(zonedDateTime);
 
         assertEquals("TestClock: " + zonedDateTime.toString(), clock.toString());
     }
 
     @Test
-    public void withZone() throws Exception {
+    public void withZone() {
         TestClock clock = TestClock.at(instant, UTC);
         TestClock clockBerlin = (TestClock) clock.withZone(BERLIN);
 

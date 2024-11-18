@@ -78,7 +78,7 @@ public class InFormatParseToOffsetDateTimeTest {
     public OffsetDateTime expected;
 
     @Test
-    public void parseToOffsetDateTime() throws Exception {
+    public void parseToOffsetDateTime() {
         assertEquals(expected, InFormat.parseToOffsetDateTime(input));
     }
 }
