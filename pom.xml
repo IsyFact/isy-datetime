@@ -51,7 +51,8 @@
         <junit.version>4.13.2</junit.version>
         <!-- Fixed patch for commons-text CVE-2022-42889 -->
         <commons-text.version>1.10.0</commons-text.version>
-
+        <tidy.pom>1.3.0</tidy.pom>
+        <flattened.pom>1.2.7</flattened.pom>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     </properties>
@@ -132,9 +133,31 @@
 
                 <plugin>
                     <groupId>org.codehaus.mojo</groupId>
+                    <artifactId>tidy-maven-plugin</artifactId>
+                    <version>${tidy.pom}</version>
+                    <executions>
+                        <execution>
+                            <id>tidy-before-check</id>
+                            <phase>validate</phase>
+                            <goals>
+                                <goal>pom</goal>
+                            </goals>
+                        </execution>
+                        <execution>
+                            <id>check-pom-style</id>
+                            <phase>process-resources</phase>
+                            <goals>
+                                <goal>check</goal>
+                            </goals>
+                        </execution>
+                    </executions>
+                </plugin>
+
+                <plugin>
+                    <groupId>org.codehaus.mojo</groupId>
                     <artifactId>flatten-maven-plugin</artifactId>
+                    <version>${flattened.pom}</version>
                     <configuration>
-                        <updatePomFile>true</updatePomFile>
                         <flattenMode>oss</flattenMode>
                     </configuration>
                     <executions>
