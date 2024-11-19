@@ -34,5 +34,6 @@ Dieses Projekt ist unter der Apache-2-Lizenz lizenziert. Weitere Informationen f
 
 ### Kontakt
 
-__Vielen Dank für die Verwendung von isy-datetime!__
+__Vielen Dank für die Verwendung von isy-datetime!__ <br> 
+Bei Fragen oder Anmerkungen können Sie uns unter folgender E-Mail-Adresse kontaktieren: [isyfact@bva.bund.de](mailto:isyfact@bva.bund.de)
 
