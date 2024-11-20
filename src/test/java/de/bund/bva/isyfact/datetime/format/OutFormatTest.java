@@ -7,9 +7,6 @@ import java.time.Period;
 
 import org.junit.Test;
 
-/**
-
- */
 public class OutFormatTest {
 
     @Test
