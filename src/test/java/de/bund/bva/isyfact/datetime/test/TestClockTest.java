@@ -11,9 +11,6 @@ import java.time.ZonedDateTime;
 
 import org.junit.Test;
 
-/**
-
- */
 public class TestClockTest {
 
     private static final ZoneId UTC = ZoneId.of("UTC");
