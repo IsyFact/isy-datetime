@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>de.bund.bva.isyfact</groupId>
-    <artifactId>isy-datetime</artifactId>
+    <artifactId>isyfact-datetime</artifactId>
     <version>${revision}</version>
     <packaging>jar</packaging>
 
