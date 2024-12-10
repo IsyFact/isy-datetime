@@ -4,7 +4,7 @@ Keine
 
 ## Umgesetzte Tickets
 ### Features
-- `IFS-2715`: Transformation isy-datetime in einen eigenständigen baustein
+- `IFS-2715`: Transformation von isy-datetime in einen eigenständigen Baustein
 - `IFS-3732`: Antora-komponente anlegen
 - `IFS-3734`: Bausteindokumentation aus isyfact-standards migrieren
  
