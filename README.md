@@ -7,17 +7,17 @@ Diese Bibliothek stellt Funktionen für die Anzeige, Eingabe und Speicherung von
 
 ## IsyFact
 
-isy-datetime ist ein Teil der IsyFact-Standards, eines Open-Source-Projekts für Softwarelösungen, querschnittliche Anwendungen, sowie Programmierbibliotheken und -vorlagen zur Erstellung von Geschäftsanwendungen.
+isy-datetime ist ein Teil der IsyFact-Standards, einem Open-Source-Projekt für Softwarelösungen, querschnittliche Anwendungen sowie Programmierbibliotheken und -vorlagen zur Erstellung von Geschäftsanwendungen.
 
 ## Features
 
 Die Repräsentation eines Zeitraums im Sinne des Konzepts wird nicht durch die Java 8 Date and Time API bereitgestellt. Für diesen Zweck stellt isy-datetime die Klasse __Zeitraum__ bereit.
 
-Ein Zeitraum kann aus zwei Datumsangaben, zwei Datums- und Zeitangaben oder nur aus Zeitangaben erstellt werden. Das angegebene Ende ist immer exklusive und nicht Teil des Zeitraums. Ein Zeitraum, der nur aus Zeiten besteht, kann nicht länger als 24 Stunden sein, aber über einen Tageswechsel (22:00 – 06:00) gehen. Bei Zeiträumen die nur aus Datumsangaben bestehen, ist die Anfangszeit 00:00 Uhr des Anfangstages und die Endzeit 00:00 Uhr des Endtages.
+Ein Zeitraum kann aus zwei Datumsangaben, zwei Datums- und Zeitangaben oder nur aus Zeitangaben erstellt werden. Das angegebene Ende ist immer exklusiv und nicht Teil des Zeitraums. Ein Zeitraum, der nur aus Zeiten besteht, kann nicht länger als 24 Stunden sein, aber über einen Tageswechsel (z.B. 22:00 – 06:00) gehen. Bei Zeiträumen, die nur aus Datumsangaben bestehen, ist die Anfangszeit 00:00 Uhr des Anfangstages und die Endzeit 00:00 Uhr des Endtages.
 
 Intern werden Anfang und Ende mit Angabe der Zeitzone gespeichert, um die Dauer bei Zeitumstellungen korrekt berechnen zu können. Wird bei der Erstellung keine Zeitzone angegeben, wird die Standard-Zeitzone der JVM verwendet.
 
-Zur formatierten Ein- und Ausgabe stellt isy-datetime die Klassen __InFormat__ und __OutFormat__ bereit. Diese beinhalten vorkonfigurierte DateTimeFormatter für die im Konzept beschriebene Formate. Die Verarbeitung in der ISO-8601-konformen Darstellung wird direkt durch die Klassen der Java 8 Date and Time API unterstützt.
+Zur formatierten Ein- und Ausgabe stellt isy-datetime die Klassen __InFormat__ und __OutFormat__ bereit. Diese beinhalten vorkonfigurierte DateTimeFormatter für die im Konzept beschriebenen Formate. Die Verarbeitung in der ISO-8601-konformen Darstellung wird direkt durch die Klassen der Java 8 Date and Time API unterstützt.
 
 ## Installation
 
