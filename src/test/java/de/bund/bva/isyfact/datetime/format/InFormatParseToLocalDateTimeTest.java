@@ -1,5 +1,7 @@
 package de.bund.bva.isyfact.datetime.format;
 
+import static org.junit.Assert.assertEquals;
+
 import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.Collection;
@@ -8,11 +10,6 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 
-import static org.junit.Assert.assertEquals;
-
-/**
-
- */
 @RunWith(Parameterized.class)
 public class InFormatParseToLocalDateTimeTest {
 
@@ -83,7 +80,7 @@ public class InFormatParseToLocalDateTimeTest {
     public LocalDateTime expected;
 
     @Test
-    public void parseToLocalDateTime() throws Exception {
+    public void parseToLocalDateTime() {
         assertEquals(expected, InFormat.parseToLocalDateTime(input));
     }
 }

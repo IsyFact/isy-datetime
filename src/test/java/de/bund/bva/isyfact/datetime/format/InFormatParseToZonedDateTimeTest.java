@@ -1,5 +1,7 @@
 package de.bund.bva.isyfact.datetime.format;
 
+import static org.junit.Assert.assertEquals;
+
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.util.Arrays;
@@ -9,11 +11,6 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 
-import static org.junit.Assert.assertEquals;
-
-/**
-
- */
 @RunWith(Parameterized.class)
 public class InFormatParseToZonedDateTimeTest {
 
@@ -39,7 +36,7 @@ public class InFormatParseToZonedDateTimeTest {
     public ZonedDateTime expected;
 
     @Test
-    public void parseToZonedDateTime() throws Exception {
+    public void parseToZonedDateTime() {
         assertEquals(expected, InFormat.parseToZonedDateTime(input));
     }
 }

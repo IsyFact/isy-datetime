@@ -1,5 +1,10 @@
 package de.bund.bva.isyfact.datetime.util;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertTrue;
+
 import java.time.Clock;
 import java.time.DateTimeException;
 import java.time.LocalDate;
@@ -9,15 +14,11 @@ import java.time.OffsetDateTime;
 import java.time.OffsetTime;
 import java.time.ZonedDateTime;
 
-import de.bund.bva.isyfact.datetime.test.TestClock;
 import org.junit.After;
 import org.junit.Test;
 
-import static org.junit.Assert.*;
+import de.bund.bva.isyfact.datetime.test.TestClock;
 
-/**
-
- */
 public class DateTimeUtilTest {
 
     private static final LocalDate DATE_2017_7_1 = LocalDate.of(2017, 7, 1);
@@ -32,7 +33,7 @@ public class DateTimeUtilTest {
     }
 
     @Test
-    public void datumLiegtZwischen() throws Exception {
+    public void datumLiegtZwischen() {
         assertFalse(DateTimeUtil.datumLiegtZwischen(DATE_2017_7_1, DATE_2017_8_1, DATE_2017_9_1));
         assertTrue(DateTimeUtil.datumLiegtZwischen(DATE_2017_8_1, DATE_2017_8_1, DATE_2017_9_1));
         assertTrue(DateTimeUtil.datumLiegtZwischen(DATE_2017_8_1, DATE_2017_7_1, DATE_2017_9_1));
@@ -42,12 +43,12 @@ public class DateTimeUtilTest {
     }
 
     @Test(expected = DateTimeException.class)
-    public void datumLiegtZwischenAnfangNachEnde() throws Exception {
+    public void datumLiegtZwischenAnfangNachEnde() {
         DateTimeUtil.datumLiegtZwischen(DATE_2017_7_1, DATE_2017_9_1, DATE_2017_8_1);
     }
 
     @Test
-    public void datumLiegtZwischenExklusive() throws Exception {
+    public void datumLiegtZwischenExklusive() {
         assertFalse(DateTimeUtil.datumLiegtZwischenExklusive(DATE_2017_7_1, DATE_2017_8_1, DATE_2017_9_1));
         assertFalse(DateTimeUtil.datumLiegtZwischenExklusive(DATE_2017_8_1, DATE_2017_8_1, DATE_2017_9_1));
         assertTrue(DateTimeUtil.datumLiegtZwischenExklusive(DATE_2017_8_1, DATE_2017_7_1, DATE_2017_9_1));
@@ -57,31 +58,31 @@ public class DateTimeUtilTest {
     }
 
     @Test(expected = DateTimeException.class)
-    public void datumLiegtZwischenExklusiveAnfangNachEnde() throws Exception {
+    public void datumLiegtZwischenExklusiveAnfangNachEnde() {
         DateTimeUtil.datumLiegtZwischenExklusive(DATE_2017_7_1, DATE_2017_9_1, DATE_2017_8_1);
     }
 
     @Test
-    public void getJahresanfang() throws Exception {
+    public void getJahresanfang() {
         assertNull(DateTimeUtil.getJahresanfang(null));
         assertEquals(LocalDate.of(2017, 1, 1), DateTimeUtil.getJahresanfang(DATE_2017_7_1));
     }
 
     @Test
-    public void getMonatsanfang() throws Exception {
+    public void getMonatsanfang() {
         assertNull(DateTimeUtil.getMonatsanfang(null));
         assertEquals(LocalDate.of(2017, 7, 1), DateTimeUtil.getMonatsanfang(DATE_2017_7_1));
     }
 
     @Test
-    public void getMonatsende() throws Exception {
+    public void getMonatsende() {
         assertNull(DateTimeUtil.getMonatsende(null));
         assertEquals(LocalDate.of(2017, 7, 31), DateTimeUtil.getMonatsende(DATE_2017_7_1));
         assertEquals(LocalDate.of(2016, 2, 29), DateTimeUtil.getMonatsende(LocalDate.of(2016, 2, 5)));
     }
 
     @Test
-    public void getWerktag() throws Exception {
+    public void getWerktag() {
         LocalDate SONNTAG = LocalDate.of(2017, 8, 6);
         LocalDate MONTAG = SONNTAG.plusDays(1);
 
@@ -90,7 +91,7 @@ public class DateTimeUtilTest {
     }
 
     @Test
-    public void localTimeNow() throws Exception {
+    public void localTimeNow() {
         assertEquals(LocalTime.now().withNano(0), DateTimeUtil.localTimeNow().withNano(0));
 
         LocalDateTime testDatumZeit = LocalDateTime.now().minusDays(1);
@@ -100,7 +101,7 @@ public class DateTimeUtilTest {
     }
 
     @Test
-    public void offsetTimeNow() throws Exception {
+    public void offsetTimeNow() {
         assertEquals(OffsetTime.now().withNano(0), DateTimeUtil.offsetTimeNow().withNano(0));
 
         OffsetDateTime testDatumZeit = OffsetDateTime.now().minusDays(1);
@@ -110,7 +111,7 @@ public class DateTimeUtilTest {
     }
 
     @Test
-    public void localDateNow() throws Exception {
+    public void localDateNow() {
         assertEquals(LocalDate.now(), DateTimeUtil.localDateNow());
 
         LocalDateTime testDatumZeit = LocalDateTime.now().minusDays(1);
@@ -120,7 +121,7 @@ public class DateTimeUtilTest {
     }
 
     @Test
-    public void localDateTimeNow() throws Exception {
+    public void localDateTimeNow() {
         assertEquals(LocalDateTime.now().withNano(0), DateTimeUtil.localDateTimeNow().withNano(0));
 
         LocalDateTime testDatumZeit = LocalDateTime.now().minusDays(1);
@@ -130,7 +131,7 @@ public class DateTimeUtilTest {
     }
 
     @Test
-    public void offsetDateTimeNow() throws Exception {
+    public void offsetDateTimeNow() {
         assertEquals(OffsetDateTime.now().withNano(0), DateTimeUtil.offsetDateTimeNow().withNano(0));
 
         OffsetDateTime testDatumZeit = OffsetDateTime.now().minusDays(1);
@@ -140,7 +141,7 @@ public class DateTimeUtilTest {
     }
 
     @Test
-    public void ZonedDateTimeNow() throws Exception {
+    public void ZonedDateTimeNow() {
         assertEquals(ZonedDateTime.now().withNano(0), DateTimeUtil.zonedDateTimeNow().withNano(0));
 
         ZonedDateTime testDatumZeit = ZonedDateTime.now().minusDays(1);
