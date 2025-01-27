@@ -1,15 +1,19 @@
 package de.bund.bva.isyfact.datetime.core;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNotEquals;
-import static org.junit.Assert.assertTrue;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.time.DateTimeException;
 import java.time.LocalDate;
 import java.util.Optional;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 
 public class UngewissesDatumTest {
@@ -62,24 +66,28 @@ public class UngewissesDatumTest {
         assertEquals(UngewissesDatum.of(2017, 8, 1), ofLocalDate);
     }
 
-    @Test(expected = NullPointerException.class)
+    @Test //(expected = NullPointerException.class)
     public void ofLocalDateNullArguments() {
-        UngewissesDatum.of(null, null);
+        assertThatThrownBy(() -> UngewissesDatum.of(null, null)).isInstanceOf(NullPointerException.class);
     }
 
-    @Test(expected = DateTimeException.class)
+    @Test //(expected = DateTimeException.class)
     public void ofLocalDateAnfageNachEnde() {
-        UngewissesDatum.of(LocalDate.of(2017, 8, 1), LocalDate.of(2017, 7, 1));
+        assertThatThrownBy(() ->
+            UngewissesDatum.of(LocalDate.of(2017, 8, 1), LocalDate.of(2017, 7, 1)))
+            .isInstanceOf(DateTimeException.class);
     }
 
-    @Test(expected = DateTimeException.class)
+    @Test //(expected = DateTimeException.class)
     public void ofLocalDateJahreVerschieden() {
-        UngewissesDatum.of(LocalDate.of(2017, 1, 1), LocalDate.of(2018, 8, 1));
+        assertThatThrownBy(() -> UngewissesDatum.of(LocalDate.of(2017, 1, 1), LocalDate.of(2018, 8, 1)))
+            .isInstanceOf(DateTimeException.class);
     }
 
-    @Test(expected = NullPointerException.class)
+    @Test //(expected = NullPointerException.class)
     public void parseNullArgument() {
-        UngewissesDatum.parse(null);
+        assertThatThrownBy(() -> UngewissesDatum.parse(null))
+            .isInstanceOf(NullPointerException.class);
     }
 
     @Test
@@ -176,5 +184,18 @@ public class UngewissesDatumTest {
         UngewissesDatum date2 = UngewissesDatum.of(2023, 1, 2);
 
         assertNotEquals(date1.hashCode(), date2.hashCode());
+    }
+
+    @ParameterizedTest
+    @CsvSource({
+        "15.08.2016, 2016-08-15",
+        "xx.08.2016, 2016-08-xx",
+        "xx.xx.2016, 2016-xx-xx",
+        "xx.xx.xxxx, xxxx-xx-xx"})
+    public void test_IFS_1168(String din5008Input, String iso8601Input) {
+        UngewissesDatum parsedDin5008 = UngewissesDatum.parse(din5008Input);
+        UngewissesDatum parsedIso8601 = UngewissesDatum.parse(iso8601Input);
+
+        assertThat(parsedDin5008).isEqualTo(parsedIso8601);
     }
 }

@@ -19,13 +19,15 @@ import java.util.Optional;
 public class UngewissesDatum {
 
     private static final DateTimeFormatter format =
-        new DateTimeFormatterBuilder().appendPattern("[00.00.0000]").appendPattern("[00.00.yyyy]")
-            .appendPattern("[00.MM.yyyy]").appendPattern("['xx.xx.xxxx']").appendPattern("['xx.xx.'yyyy]")
-            .appendPattern("['xx.'MM.yyyy]").appendPattern("[dd.MM.yyyy]").parseStrict().toFormatter();
+        new DateTimeFormatterBuilder()
+            .appendPattern("[00.00.0000][00.00.yyyy][00.MM.yyyy]['xx.xx.xxxx']['xx.xx.'yyyy]['xx.'MM.yyyy][dd.MM.yyyy]")
+            .appendPattern("[yyyy-MM-dd][yyyy-MM'-xx'][yyyy'-xx-xx']['xxxx-xx-xx']")
+            .parseStrict()
+            .toFormatter();
 
-    private static final int minMonth = (int)ChronoField.MONTH_OF_YEAR.range().getMinimum();
+    private static final int minMonth = (int) ChronoField.MONTH_OF_YEAR.range().getMinimum();
 
-    private static final int minDayOfMonth = (int)ChronoField.DAY_OF_MONTH.range().getMinimum();
+    private static final int minDayOfMonth = (int) ChronoField.DAY_OF_MONTH.range().getMinimum();
 
     private LocalDate anfang;
 
@@ -293,6 +295,20 @@ public class UngewissesDatum {
         }
 
         return toString;
+    }
+
+    public String toIsoString() {
+        if (isLeer()) {
+            return "xxxx-xx-xx";
+        } else if (anfang.equals(ende)) {
+            return anfang.format(DateTimeFormatter.ISO_LOCAL_DATE);
+        } else if (nurJahrBekannt()) {
+            return String.format("%04d-xx-xx", anfang.getYear());
+        } else if (nurMonatUndJahrBekannt()) {
+            return String.format("%04d-%02d-xx", anfang.getYear(), anfang.getMonthValue());
+        } else {
+            return String.format("%s - %s", anfang.format(DateTimeFormatter.ISO_LOCAL_DATE), ende.format(DateTimeFormatter.ISO_LOCAL_DATE));
+        }
     }
 
     private boolean nurJahrBekannt() {
