@@ -66,25 +66,25 @@ public class UngewissesDatumTest {
         assertEquals(UngewissesDatum.of(2017, 8, 1), ofLocalDate);
     }
 
-    @Test //(expected = NullPointerException.class)
+    @Test
     public void ofLocalDateNullArguments() {
         assertThatThrownBy(() -> UngewissesDatum.of(null, null)).isInstanceOf(NullPointerException.class);
     }
 
-    @Test //(expected = DateTimeException.class)
+    @Test
     public void ofLocalDateAnfageNachEnde() {
         assertThatThrownBy(() ->
             UngewissesDatum.of(LocalDate.of(2017, 8, 1), LocalDate.of(2017, 7, 1)))
             .isInstanceOf(DateTimeException.class);
     }
 
-    @Test //(expected = DateTimeException.class)
+    @Test
     public void ofLocalDateJahreVerschieden() {
         assertThatThrownBy(() -> UngewissesDatum.of(LocalDate.of(2017, 1, 1), LocalDate.of(2018, 8, 1)))
             .isInstanceOf(DateTimeException.class);
     }
 
-    @Test //(expected = NullPointerException.class)
+    @Test
     public void parseNullArgument() {
         assertThatThrownBy(() -> UngewissesDatum.parse(null))
             .isInstanceOf(NullPointerException.class);
@@ -191,11 +191,54 @@ public class UngewissesDatumTest {
         "15.08.2016, 2016-08-15",
         "xx.08.2016, 2016-08-xx",
         "xx.xx.2016, 2016-xx-xx",
-        "xx.xx.xxxx, xxxx-xx-xx"})
-    public void test_IFS_1168(String din5008Input, String iso8601Input) {
+        "xx.xx.xxxx, xxxx-xx-xx"
+    })
+    public void testParsedDateFormatsAreEqual(String din5008Input, String iso8601Input) {
         UngewissesDatum parsedDin5008 = UngewissesDatum.parse(din5008Input);
         UngewissesDatum parsedIso8601 = UngewissesDatum.parse(iso8601Input);
 
         assertThat(parsedDin5008).isEqualTo(parsedIso8601);
+    }
+
+    @Test
+    public void testIsoStringIsEmpty() {
+        UngewissesDatum emptyDate = UngewissesDatum.leer();
+        assertThat(emptyDate.toIsoString()).isEqualTo("xxxx-xx-xx");
+    }
+
+    @Test
+    public void testIsoStringOfOneDay() {
+        LocalDate date = LocalDate.of(2000, 1, 1);
+        UngewissesDatum dateOfSingleDay = UngewissesDatum.of(date, date);
+
+        assertThat(dateOfSingleDay.toIsoString()).isEqualTo("2000-01-01");
+    }
+
+    @Test
+    public void testIsoStringOfYearOnly() {
+        UngewissesDatum dateWithYear = UngewissesDatum.of(2000);
+        UngewissesDatum dateWithYearSpan = UngewissesDatum.of(
+            LocalDate.of(2000, 1, 1),
+            LocalDate.of(2000, 12, 31)
+        );
+
+        assertThat(dateWithYear.toIsoString())
+            .isEqualTo(dateWithYearSpan.toIsoString())
+            .isEqualTo("2000-xx-xx");
+    }
+
+    @Test
+    public void testIsoStringOfYearAndMonthOnly() {
+        UngewissesDatum date = UngewissesDatum.of(2000, 1);
+        assertThat(date.toIsoString()).isEqualTo("2000-01-xx");
+    }
+
+    @Test
+    public void testIsoStringOfDateSpan() {
+        LocalDate startDate = LocalDate.of(2000, 1, 1);
+        LocalDate endDate = LocalDate.of(2000, 2, 2);
+        UngewissesDatum dateSpan = UngewissesDatum.of(startDate, endDate);
+
+        assertThat(dateSpan.toIsoString()).isEqualTo("2000-01-01 - 2000-02-02");
     }
 }
