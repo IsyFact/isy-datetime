@@ -364,7 +364,7 @@ Eine Übersicht dieses Vorgangs zeigt <<table-UmsSonderNull>>.
 |====
 
 Des Weiteren muss die Bibliothek die Eingabe unbekannter Datums- oder Zeitbestandteile mittels „x“ unterstützen.
-Diese Möglichkeit wird die Eingabe unbekannter Datums- oder Zeitbestandteile mittels Nullen mittelfristig ablösen.
+Diese Möglichkeit wird die Eingabe unbekannter Datums- oder Zeitbestandteile mittels Nullen mittelfristig ablösen und unterstützt Eingaben im ISO-8601 Datumsformat.
 Die Eingabe mittels „x“ ermöglicht die oben genannten Sonderfälle auch für Zeitwerte, bei denen im Unterschied zu Datumswerten „0“ ein korrekter Wert für die jeweiligen Bestandteile (Stunde, Minute und Sekunde) ist.
 Eine Übersicht der so umgesetzten Spezialfälle zeigt <<table-UmsSonderX>>.
 
@@ -378,6 +378,12 @@ Eine Übersicht der so umgesetzten Spezialfälle zeigt <<table-UmsSonderX>>.
 |Tag und Monat unbekannt |xx.xx.1966 |Zeitraum: +
 1.1.1966 – 31.12.1966
 |Datum komplett unbekannt |xx.xx.xxxx |Zeitraum: +
+nicht gesetzt (null)
+|Tag unbekannt (ISO-8601) |1966-05-xx |Zeitraum: +
+1.5.1966 – 31.5.1966
+|Tag und Monat unbekannt (ISO-8601) |1966-xx-xx |Zeitraum: +
+1.1.1966 – 31.12.1966
+|Datum komplett unbekannt (ISO-8601) |xxxx-xx-xx |Zeitraum: +
 nicht gesetzt (null)
 |Sekunde unbekannt |14:34:xx |Zeitraum: +
 14:34:00 – 14:34:59
