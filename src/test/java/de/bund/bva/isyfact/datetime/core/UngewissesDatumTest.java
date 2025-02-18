@@ -144,7 +144,7 @@ public class UngewissesDatumTest {
         UngewissesDatum date2 = UngewissesDatum.of(2023, 1, 1);
 
         assertEquals(date1, date2);
-        // Wenn Referenzen identisch sind, wird restliche Logik von equals übersprungen
+        // If references are identical, the remaining logic of equals is skipped
         assertEquals(date1, date1);
         assertEquals(date1.hashCode(), date2.hashCode());
     }
