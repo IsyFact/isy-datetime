@@ -40,6 +40,7 @@
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
         <maven.compiler.version>3.11.0</maven.compiler.version>
+        <maven.surefire.version>3.2.5</maven.surefire.version>
         <maven.jar.version>3.3.0</maven.jar.version>
         <maven.deploy.version>2.8.2</maven.deploy.version>
         <maven.jacoco.version>0.8.12</maven.jacoco.version>
@@ -115,6 +116,17 @@
                     <configuration>
                         <source>${maven.compiler.source}</source>
                         <target>${maven.compiler.target}</target>
+                    </configuration>
+                </plugin>
+
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-surefire-plugin</artifactId>
+                    <version>${maven.surefire.version}</version>
+                    <configuration>
+                        <includes>
+                            <include>**/*Test*.java</include>
+                        </includes>
                     </configuration>
                 </plugin>
 
