@@ -1,12 +1,24 @@
 package de.bund.bva.isyfact.datetime.core;
 
-import de.bund.bva.isyfact.datetime.format.OutFormat;
-import org.junit.Test;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotEquals;
+import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertTrue;
 
-import java.time.*;
+import java.time.DateTimeException;
+import java.time.Duration;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.Period;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
 import java.time.temporal.ChronoUnit;
 
-import static org.junit.Assert.*;
+import org.junit.Test;
+
+import de.bund.bva.isyfact.datetime.format.OutFormat;
 
 
 public class ZeitraumTest {
@@ -25,7 +37,7 @@ public class ZeitraumTest {
         ZonedDateTime.of(localDateTime, ZoneId.systemDefault());
 
     @Test
-    public void ofZonedDateTime() throws Exception {
+    public void ofZonedDateTime() {
         ZonedDateTime anfang = zonedDateTime;
         ZonedDateTime ende = zonedDateTime.plusDays(2);
 
@@ -36,7 +48,7 @@ public class ZeitraumTest {
     }
 
     @Test
-    public void ofZonedDateTimeDuration() throws Exception {
+    public void ofZonedDateTimeDuration() {
         Duration duration = Duration.ofHours(12);
 
         Zeitraum zeitraum = Zeitraum.of(zonedDateTime, duration);
@@ -46,7 +58,7 @@ public class ZeitraumTest {
     }
 
     @Test
-    public void ofZonedDateTimePeriod() throws Exception {
+    public void ofZonedDateTimePeriod() {
         Period period = Period.of(1, 1, 1);
 
         Zeitraum zeitraum = Zeitraum.of(zonedDateTime, period);
@@ -56,42 +68,42 @@ public class ZeitraumTest {
     }
 
     @Test(expected = NullPointerException.class)
-    public void ofZonedDateTimeNullArguments() throws Exception {
+    public void ofZonedDateTimeNullArguments() {
         Zeitraum.of(null, (ZonedDateTime) null);
     }
 
     @Test(expected = NullPointerException.class)
-    public void ofZonedDateTimeDurationNullArguments() throws Exception {
+    public void ofZonedDateTimeDurationNullArguments() {
         Zeitraum.of((ZonedDateTime) null, (Duration) null);
     }
 
     @Test(expected = NullPointerException.class)
-    public void ofZonedDateTimePeriodNullArguments() throws Exception {
+    public void ofZonedDateTimePeriodNullArguments() {
         Zeitraum.of((ZonedDateTime) null, (Period) null);
     }
 
     @Test(expected = NullPointerException.class)
-    public void ofLocalDateTimeNullArguments() throws Exception {
+    public void ofLocalDateTimeNullArguments() {
         Zeitraum.of(null, (LocalDateTime) null);
     }
 
     @Test(expected = NullPointerException.class)
-    public void ofLocalDateTimeDurationNullArguments() throws Exception {
+    public void ofLocalDateTimeDurationNullArguments() {
         Zeitraum.of((LocalDateTime) null, (Duration) null);
     }
 
     @Test(expected = NullPointerException.class)
-    public void ofLocalDateTimePeriodNullArguments() throws Exception {
+    public void ofLocalDateTimePeriodNullArguments() {
         Zeitraum.of((LocalDateTime) null, (Period) null);
     }
 
     @Test(expected = NullPointerException.class)
-    public void ofLocalDateNullArguments() throws Exception {
+    public void ofLocalDateNullArguments() {
         Zeitraum.of(null, (LocalDate) null);
     }
 
     @Test(expected = NullPointerException.class)
-    public void ofLocalDatePeriodNullArguments() throws Exception {
+    public void ofLocalDatePeriodNullArguments() {
         Zeitraum.of((LocalDate) null, (Period) null);
     }
 
@@ -141,7 +153,7 @@ public class ZeitraumTest {
     }
 
     @Test
-    public void ofLocalDateTime() throws Exception {
+    public void ofLocalDateTime() {
         Zeitraum zeitraum = Zeitraum.of(localDateTime, localDateTime.plusHours(10));
 
         ZonedDateTime anfangExpected = ZonedDateTime.of(localDateTime, ZoneId.systemDefault());
@@ -152,7 +164,7 @@ public class ZeitraumTest {
     }
 
     @Test
-    public void ofLocalDateTimeDuration() throws Exception {
+    public void ofLocalDateTimeDuration() {
         LocalDateTime anfang = localDateTime;
         Duration duration = Duration.ofHours(12);
 
@@ -166,7 +178,7 @@ public class ZeitraumTest {
     }
 
     @Test
-    public void ofLocalDateTimePeriod() throws Exception {
+    public void ofLocalDateTimePeriod() {
         LocalDateTime anfang = localDateTime;
         Period period = Period.of(1, 1, 1);
 
@@ -180,7 +192,7 @@ public class ZeitraumTest {
     }
 
     @Test
-    public void ofLocalDate() throws Exception {
+    public void ofLocalDate() {
         LocalDate ende = localDate.plusDays(7);
 
         Zeitraum zeitraum = Zeitraum.of(localDate, ende);
@@ -193,7 +205,7 @@ public class ZeitraumTest {
     }
 
     @Test
-    public void ofLocalDatePeriod() throws Exception {
+    public void ofLocalDatePeriod() {
         LocalDate anfang = localDate;
         Period period = Period.of(1, 1, 1);
 
@@ -206,7 +218,7 @@ public class ZeitraumTest {
     }
 
     @Test
-    public void ofLocalTime() throws Exception {
+    public void ofLocalTime() {
         Zeitraum zeitraum = Zeitraum.of(localTime, localTime.plusMinutes(90));
 
         assertEquals(90, zeitraum.dauer(ChronoUnit.MINUTES));
@@ -218,7 +230,7 @@ public class ZeitraumTest {
     }
 
     @Test
-    public void ofLocalTimeAnfangNachEnde() throws Exception {
+    public void ofLocalTimeAnfangNachEnde() {
         Zeitraum zeitraum = Zeitraum.of(localTime, localTime.minusHours(10));
 
         assertEquals(14, zeitraum.dauer(ChronoUnit.HOURS));
@@ -230,7 +242,7 @@ public class ZeitraumTest {
     }
 
     @Test
-    public void ofLocalTimeDuration() throws Exception {
+    public void ofLocalTimeDuration() {
         Zeitraum zeitraum = Zeitraum.of(localTime, Duration.ofHours(2));
 
         assertEquals(2, zeitraum.dauer(ChronoUnit.HOURS));
@@ -258,7 +270,7 @@ public class ZeitraumTest {
     }
 
     @Test
-    public void umstellungSommerzeit() throws Exception {
+    public void umstellungSommerzeit() {
         ZoneId berlin = ZoneId.of("Europe/Berlin");
 
         ZonedDateTime anfangInNormalzeit = ZonedDateTime.of(2017, 3, 25, 18, 0, 0, 0, berlin);
@@ -271,7 +283,7 @@ public class ZeitraumTest {
     }
 
     @Test
-    public void umstellungNormalzeit() throws Exception {
+    public void umstellungNormalzeit() {
         ZoneId berlin = ZoneId.of("Europe/Berlin");
 
         ZonedDateTime anfangInSommerzeit = ZonedDateTime.of(2017, 10, 28, 18, 0, 0, 0, berlin);
