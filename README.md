@@ -23,7 +23,7 @@ Zur formatierten Ein- und Ausgabe stellt isy-datetime die Klassen __InFormat__ u
 
 ### Dokumentation
 Die Dokumentation zu Konzept und Nutzungsvorgaben des IsyFact Moduls isy-datetime ist auf den Seiten  
-[Konzept](docs/modules/ROOT/pages/konzept/master.adoc) und [Nutzungsvorgaben](docs/modules/ROOT/pages/nutzungsvorgaben/master.adoc) zu finden.
+[Konzept](isy-datetime-doc/modules/ROOT/pages/konzept/master.adoc) und [Nutzungsvorgaben](isy-datetime-doc/modules/ROOT/pages/nutzungsvorgaben/master.adoc) zu finden.
 
 ### Mithelfen
 Wir freuen uns über Beiträge zur Weiterentwicklung von isy-datetime. 
