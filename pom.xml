@@ -64,7 +64,8 @@
         <!-- Quality Gate -->
         <tidy.pom.version>1.3.0</tidy.pom.version>
         <flattened.pom.version>1.2.7</flattened.pom.version>
-        <checkstyle.plugin.version>3.2.1</checkstyle.plugin.version>
+        <checkstyle.plugin.version>3.6.0</checkstyle.plugin.version>
+        <isy-checkstyle-config.version>0.2.0</isy-checkstyle-config.version>
         <spotbugs.version>4.8.5.0</spotbugs.version>
         <versions.maven.plugin.version>2.17.1</versions.maven.plugin.version>
     </properties>
@@ -300,7 +301,7 @@
                         <dependency>
                             <groupId>de.bund.bva.isyfact</groupId>
                             <artifactId>isy-checkstyle-config</artifactId>
-                            <version>0.2.0</version>
+                            <version>${isy-checkstyle-config.version}</version>
                         </dependency>
                     </dependencies>
                     <executions>
