@@ -204,7 +204,7 @@ deren Format gemäß der Anforderungen der Kapitel <<datumswert-1>> bis <<dauer-
 [[persistierung]]
 === Persistierung
 
-Die Persistierung von Angaben zu Datum, Zeit, Dauer, Zeiträumen und  <<ungewisse-datums-und-zeitwerte,ungewissen Datums- und Zeitangaben>> wird durch den xref:isyfact-standards-doku:isy-persistence:konzept/vorgaben-konventionen.adoc#behandlung-von-zeitangaben[Baustein JPA/Hibernate] behandelt.
+Die Persistierung von Angaben zu Datum, Zeit, Dauer, Zeiträumen und  <<ungewisse-datums-und-zeitwerte,ungewissen Datums- und Zeitangaben>> wird durch den xref:isyfact-standards-doku:referenzarchitektur:software-technisch/backend/persistenz/vorgaben-konventionen.adoc#behandlung-von-zeitangaben[Baustein JPA/Hibernate] behandelt.
 
 [[berechnungen]]
 === Berechnungen
