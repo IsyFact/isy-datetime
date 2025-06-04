@@ -3,6 +3,7 @@
 - `IFS-2715`: Transformation von isy-datetime in einen eigenständigen Baustein
 - `IFS-3732`: Antora-Komponente anlegen
 - `IFS-3734`: Bausteindokumentation aus isyfact-standards migrieren
+- `IFS-4655`: Update von Maven Checkstyle Plugin auf Version 3.6.0
 
 # 1.3.0
 - `IFS-262`: `isyfact-masterpom` deprecated (Abschaffung mit IsyFact 2.0), `isyfact-masterpom-lib` aufgelöst, Bibliotheken benutzen `isyfact-standards` als Parent-POM
