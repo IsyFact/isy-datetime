@@ -80,7 +80,7 @@ Dazu muss standardmäßig folgendes Format benutzt werden:
 
 [frame="none"]
 |====
-^|yyyy-MM-dd'T'HH:mm:ssZ
+^m|yyyy-MM-dd'T'HH:mm:ssZ
 |====
 
 Die Angabe der Zeitzone kann nur dann entfallen, wenn sie global festgelegt wurde oder aus dem Kontext heraus
@@ -201,11 +201,6 @@ deren Format gemäß der Anforderungen der Kapitel <<datumswert-1>> bis <<dauer-
 |Zeitwert |Dauer |12:00, 90min 15s
 |====
 
-[[persistierung]]
-=== Persistierung
-
-Die Persistierung von Angaben zu Datum, Zeit, Dauer, Zeiträumen und  <<ungewisse-datums-und-zeitwerte,ungewissen Datums- und Zeitangaben>> wird durch den xref:isyfact-standards-doku:referenzarchitektur:software-technisch/backend/persistenz/vorgaben-konventionen.adoc#behandlung-von-zeitangaben[Baustein JPA/Hibernate] behandelt.
-
 [[berechnungen]]
 === Berechnungen
 
@@ -222,7 +217,7 @@ Die Bibliothek muss die folgenden Berechnungen auf Datums- & Zeitwerten ermögli
 * Ermittlung des „Tagesdatums“ (der zeitliche Anteil eines Datumswerts wird auf 0, d.h. auf Mitternacht, gestellt)
 * Berechnung des Abstands („Dauer“) zwischen zwei Datums- oder Zeitwerten
 * Addition und Subtraktion von Datums- und Zeitwerten mit einer Dauer
-* Prüfung, ob zwei Datumswerte für zwei direkt aufeinanderfolgende Tage stehen ("Liegt der 28.2.2016 direkt vor dem 1.3.2016?“)
+* Prüfung, ob zwei Datumswerte für zwei direkt aufeinanderfolgende Tage stehen ("Liegt der 28.2.2016 direkt vor dem 1.3.2016?")
 * Berechnung des nächsten Werktags nach einem übergebenen Datumswert
 
 [[zeitraum-2]]
@@ -274,7 +269,7 @@ Die Anforderungen zur Konkretisierung gelten ebenso für Zeitangaben.
 |Erkenntnisse |Wert
 |Initiale Erkenntnis: Das Ereignis fand nach Mittag statt.             |Start des Ereignisses: 12:01 – 23:59
 |Zusätzliche Erkenntnis: Das Ereignis fand vor 18 Uhr statt.           |Start des Ereignisses: 12:01 – 17:59
-|Zusätzliche Erkenntnis: Das Ereignis fand um Viertel nach Drei statt. |Start des Ereignisses: 15:15 – 15:15
+|Zusätzliche Erkenntnis: Das Ereignis fand um Viertel nach 15 Uhr statt. |Start des Ereignisses: 15:15 – 15:15
 |====
 
 [[testunterstuetzung]]
@@ -393,7 +388,7 @@ nicht gesetzt (null)
 nicht gesetzt (null)
 |====
 
-[[testunterstützung-1]]
+[[testunterstuetzung-1]]
 === Testunterstützung
 
 Die Umsetzung der Testunterstützung geschieht über das Mocken der Klasse `java.time.Clock`.
