@@ -1,6 +1,3 @@
-# 5.0.0
-- `IFS-4710`: Kennzeichnung der Lizenz vereinheitlichen
-
 # 4.0.0
 ### Features
 - `IFS-1168`: Kompatibilität mit Datumsformat ISO-8601 hinzugefügt
