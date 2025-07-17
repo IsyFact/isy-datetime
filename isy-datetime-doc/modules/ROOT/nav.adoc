@@ -1,3 +1,2 @@
-** Datum & Zeit
-*** xref:konzept/master.adoc[Konzept]
-*** xref:nutzungsvorgaben/master.adoc[Nutzungsvorgaben]
+* xref:konzept.adoc[]
+* xref:nutzungsvorgaben.adoc[]
