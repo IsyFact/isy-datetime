@@ -1,6 +1,6 @@
-name: isy-datetime-docs
-title: isy-datetime
-prerelease: true
-start_page: ROOT:konzept/master.adoc
+name: datetime
+title: Baustein Datum & Zeit
+prerelease: '(DEV)'
+start_page: ROOT:konzept.adoc
 nav:
 - modules/ROOT/nav.adoc
