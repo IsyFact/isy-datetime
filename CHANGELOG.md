@@ -4,6 +4,9 @@
 - `IFS-4655`: Update von Maven Checkstyle Plugin auf Version 3.6.0
 - `IFS-4531`: Update von Flatten Maven Plugin auf Version 1.7.1
 
+## Dokumentation
+- `IFS-4764`: Bereinigung technischer Schulden
+
 ## Migrationsleitfaden
 
 ### `IFS-4764`: Bereinigung technischer Schulden
