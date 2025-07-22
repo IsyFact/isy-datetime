@@ -1,0 +1,60 @@
+name: Auto-Changelog for Dependabot Pull Requests
+
+on:
+  pull_request_target:
+    branches:
+      - develop
+    types: [opened, synchronize]
+
+permissions:
+  contents: write
+  pull-requests: read
+
+jobs:
+  AddChangelogEntry:
+    runs-on: ubuntu-latest
+    if: ${{ github.actor == 'dependabot[bot]' }}
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.ref }}
+
+      - name: Ensure Dependency Upgrades header exists
+        run: |
+          if [ ! -f CHANGELOG.md ]; then
+            printf "### Dependency Upgrades\n\n" > CHANGELOG.md
+          elif ! grep -q '^### Dependency Upgrades' CHANGELOG.md; then
+            { printf "### Dependency Upgrades\n\n"; cat CHANGELOG.md; } > tmp && mv tmp CHANGELOG.md
+          fi
+
+      - name: Generate or update changelog entry
+        run: |
+          title="${{ github.event.pull_request.title }}"
+          # Extract package and new version from Dependabot title
+          pkg=$(echo "$title" | sed -E 's/^chore\(deps\): bump ([^ ]+) from [^ ]+ to [^ ]+$/\1/')
+          version=$(echo "$title" | sed -E 's/^chore\(deps\): bump [^ ]+ from [^ ]+ to ([^ ]+)$/\1/')
+          # Capitalize first letter of package name
+          pkg_cap="${pkg^}"
+          entry="Update von $pkg_cap auf Version $version"
+          
+          # Store extracted values as environment variables for use in the commit message
+          echo "pkg_cap=$pkg_cap" >> $GITHUB_ENV
+          echo "version=$version" >> $GITHUB_ENV
+          
+          # Check if an entry for this package already exists
+          if grep -q "Update von $pkg_cap auf Version" CHANGELOG.md; then
+            # Update existing entry
+            sed -i -E "s/Update von $pkg_cap auf Version [0-9]+(\.[0-9]+)*(-[a-zA-Z0-9]+)?/Update von $pkg_cap auf Version $version/" CHANGELOG.md
+            echo "Updated existing entry for $pkg_cap to version $version"
+          else
+            # Insert new entry under the header
+            sed -i "/^### Dependency Upgrades/a $entry" CHANGELOG.md
+            echo "Added new entry for $pkg_cap version $version"
+          fi
+
+      - name: Commit & push entry
+        uses: stefanzweifel/git-auto-commit-action@v6
+        with:
+          commit_message: "chore: adds changelog entry after upgrading ${{ env.pkg_cap }} to ${{ env.version }}"
+          branch: ${{ github.event.pull_request.head.ref }}
