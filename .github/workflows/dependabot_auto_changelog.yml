@@ -20,23 +20,25 @@ jobs:
         with:
           ref: ${{ github.event.pull_request.head.ref }}
 
-      - name: Ensure Dependency Upgrades header exists
+      - name: Ensure Dependency Upgrades header exists at bottom
         run: |
-          if [ ! -f CHANGELOG.md ]; then
-            printf "### Dependency Upgrades\n\n" > CHANGELOG.md
-          elif ! grep -q '^### Dependency Upgrades' CHANGELOG.md; then
-            { printf "### Dependency Upgrades\n\n"; cat CHANGELOG.md; } > tmp && mv tmp CHANGELOG.md
+          if ! grep -q '^### Dependency Upgrades' CHANGELOG.md; then
+            # Append the header to the end of the file
+            echo -e "\n### Dependency Upgrades\n" >> CHANGELOG.md
           fi
 
       - name: Generate or update changelog entry
         run: |
           title="${{ github.event.pull_request.title }}"
-          # Extract package and new version from Dependabot title
-          pkg=$(echo "$title" | sed -E 's/^chore\(deps\): bump ([^ ]+) from [^ ]+ to [^ ]+$/\1/')
-          version=$(echo "$title" | sed -E 's/^chore\(deps\): bump [^ ]+ from [^ ]+ to ([^ ]+)$/\1/')
-          # Capitalize first letter of package name
-          pkg_cap="${pkg^}"
-          entry="Update von $pkg_cap auf Version $version"
+          # Extract package and new version from Dependabot title - support both chore and build prefixes
+          pkg=$(echo "$title" | sed -E 's/^(chore|build)\(deps\): bump ([^ ]+) from [^ ]+ to [^ ]+$/\2/')
+          version=$(echo "$title" | sed -E 's/^(chore|build)\(deps\): bump [^ ]+ from [^ ]+ to ([^ ]+)$/\2/')
+          
+          # For Maven packages, we want to keep the full name without capitalization
+          pkg_cap="$pkg"
+          
+          # Format entry with bullet point
+          entry="- Update von $pkg_cap auf Version $version"
           
           # Store extracted values as environment variables for use in the commit message
           echo "pkg_cap=$pkg_cap" >> $GITHUB_ENV
@@ -45,7 +47,7 @@ jobs:
           # Check if an entry for this package already exists
           if grep -q "Update von $pkg_cap auf Version" CHANGELOG.md; then
             # Update existing entry
-            sed -i -E "s/Update von $pkg_cap auf Version [0-9]+(\.[0-9]+)*(-[a-zA-Z0-9]+)?/Update von $pkg_cap auf Version $version/" CHANGELOG.md
+            sed -i -E "s/\- Update von $pkg_cap auf Version [0-9]+(\.[0-9]+)*(-[a-zA-Z0-9]+)?/\- Update von $pkg_cap auf Version $version/" CHANGELOG.md
             echo "Updated existing entry for $pkg_cap to version $version"
           else
             # Insert new entry under the header
