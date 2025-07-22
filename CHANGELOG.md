@@ -4,10 +4,6 @@
 - `IFS-4655`: Update von Maven Checkstyle Plugin auf Version 3.6.0
 - `IFS-4531`: Update von Flatten Maven Plugin auf Version 1.7.1
 
-### Dependency Upgrades
-- Update von org.apache.maven.plugins:maven-jar-plugin auf Version 3.4.2
-
-
 ## Dokumentation
 - `IFS-4764`: Bereinigung technischer Schulden
 
@@ -26,3 +22,7 @@ Für das Release 4.1.0 muss die Online-Dokumentation angepasst werden.
 
 #### Build
 - `.github/workflows/antora-build.yml`: `sparse-checkout` muss auf `docs` anstatt `isy-datetime-doc` gesetzt werden.
+
+### Dependency Upgrades
+- org.apache.maven.plugins:maven-compiler-plugin von 3.11.0 auf 3.14.0
+- org.apache.maven.plugins:maven-jar-plugin von 3.3.0 auf 3.4.2
