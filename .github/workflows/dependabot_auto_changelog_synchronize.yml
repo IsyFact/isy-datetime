@@ -1,0 +1,53 @@
+name: Auto-Changelog for Dependabot Pull Requests
+
+on:
+  pull_request_target:
+    branches:
+      - develop
+    types: [synchronize]
+
+permissions:
+  contents: write
+  pull-requests: read
+
+jobs:
+  UpdateChangelogEntry:
+    runs-on: ubuntu-latest
+    if: ${{ github.actor == 'dependabot[bot]' }}
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.ref }}
+
+      - name: Extract package & version
+        shell: bash
+        run: |
+          title="${{ github.event.pull_request.title }}"
+          pkg=$(echo "$title" | sed -E 's/.*[bB]ump[[:space:]]([^ ]+).*/\1/')
+          version=$(echo "$title" | sed -E 's/.*to[[:space:]]([^ ]+).*/\1/')
+          old_version=$(echo "$title" | sed -E 's/.*from[[:space:]]([^ ]+).*/\1/')
+          echo "pkg=$pkg" >> $GITHUB_ENV
+          echo "version=$version" >> $GITHUB_ENV
+          echo "old_version=$old_version" >> $GITHUB_ENV
+
+      - name: Update changelog entry on synchronize
+        shell: bash
+        run: |
+          # Check if the line with the entry to update exists
+          if grep -qE "^- Update ${pkg} von ${old_version}" CHANGELOG.md; then
+            # find line with entry to update
+            line=$(grep -nE "^- Update ${pkg} von ${old_version}" CHANGELOG.md | head -n1 | cut -d: -f1)
+            if [ -n "$line" ]; then
+              # update only the version number
+              sed -i "${line}s|auf [0-9]\+\.[0-9]\+\.[0-9]\+|auf ${version}|" CHANGELOG.md
+            fi
+          fi
+
+      - name: Commit & push entry
+        uses: stefanzweifel/git-auto-commit-action@v6
+        with:
+          commit_message: >
+            chore: update changelog entry for ${{ env.pkg }}
+            to ${{ env.version }}
+          branch: ${{ github.event.pull_request.head.ref }}
