@@ -22,3 +22,6 @@ Für das Release 4.1.0 muss die Online-Dokumentation angepasst werden.
 
 #### Build
 - `.github/workflows/antora-build.yml`: `sparse-checkout` muss auf `docs` anstatt `isy-datetime-doc` gesetzt werden.
+### Dependency Upgrades
+- Update von ci: Bump IsyFact/isy-github-actions-templates from 1.6.0 to 1.7.0 auf Version ci: Bump IsyFact/isy-github-actions-templates from 1.6.0 to 1.7.0
+
