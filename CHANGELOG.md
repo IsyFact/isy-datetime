@@ -24,6 +24,7 @@ Für das Release 4.1.0 muss die Online-Dokumentation angepasst werden.
 - `.github/workflows/antora-build.yml`: `sparse-checkout` muss auf `docs` anstatt `isy-datetime-doc` gesetzt werden.
 
 ### Dependency Upgrades
+- org.apache.maven.plugins:maven-surefire-plugin von 3.2.5 auf 3.5.3
 - org.apache.maven.plugins:maven-compiler-plugin von 3.11.0 auf 3.14.0
 - org.apache.maven.plugins:maven-jar-plugin von 3.3.0 auf 3.4.2
 - org.apache.maven.plugins:maven-enforcer-plugin von 3.5.0 auf 3.6.1
