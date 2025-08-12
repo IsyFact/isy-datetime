@@ -24,6 +24,7 @@ Für das Release 4.1.0 muss die Online-Dokumentation angepasst werden.
 - `.github/workflows/antora-build.yml`: `sparse-checkout` muss auf `docs` anstatt `isy-datetime-doc` gesetzt werden.
 
 ### Dependency Upgrades
+- Update org.jacoco:jacoco-maven-plugin von 0.8.12 auf 0.8.13
 - org.apache.maven.plugins:maven-source-plugin from 3.2.1 to 3.3.1
 - org.codehaus.mojo:tidy-maven-plugin from 1.3.0 to 1.4.0
 - org.apache.commons:commons-text von 1.10.0 auf 1.14.0
