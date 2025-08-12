@@ -4,7 +4,7 @@ on:
   pull_request_target:
     branches:
       - develop
-    types: [opened]
+    types: [opened, synchronize]
 
 permissions:
   contents: write
