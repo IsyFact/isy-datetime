@@ -1,20 +1,17 @@
 package de.bund.bva.isyfact.datetime.format;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.time.OffsetTime;
 import java.time.ZoneOffset;
 import java.util.Arrays;
 import java.util.Collection;
 
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.junit.runners.Parameterized;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.MethodSource;
 
-@RunWith(Parameterized.class)
 public class InFormatParseToOffsetTimeTest {
 
-    @Parameterized.Parameters(name = "{index}: parseToOffsetTime({0}) => {1}")
     public static Collection<Object[]> data() {
         ZoneOffset zo = ZoneOffset.ofHoursMinutes(2, 30);
 
@@ -29,15 +26,18 @@ public class InFormatParseToOffsetTimeTest {
             { "01:23:45.123456 +02:30", OffsetTime.of(1, 23, 45, 123456000, zo) },
             { "01:23:45.123456789 +02:30", OffsetTime.of(1, 23, 45, 123456789, zo) } });
     }
-
-    @Parameterized.Parameter
     public String input;
-
-    @Parameterized.Parameter(1)
     public OffsetTime expected;
 
-    @Test
-    public void parseToOffsetTime() {
+    @MethodSource("data")
+    @ParameterizedTest(name = "{index}: parseToOffsetTime({0}) => {1}")
+    public void parseToOffsetTime(String input, OffsetTime expected) {
+        initInFormatParseToOffsetTimeTest(input, expected);
         assertEquals(expected, InFormat.parseToOffsetTime(input));
+    }
+
+    public void initInFormatParseToOffsetTimeTest(String input, OffsetTime expected) {
+        this.input = input;
+        this.expected = expected;
     }
 }

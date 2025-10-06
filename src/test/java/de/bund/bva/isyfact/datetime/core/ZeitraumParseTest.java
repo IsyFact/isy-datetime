@@ -1,6 +1,6 @@
 package de.bund.bva.isyfact.datetime.core;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.time.Duration;
 import java.time.LocalDate;
@@ -12,11 +12,9 @@ import java.time.ZonedDateTime;
 import java.util.Arrays;
 import java.util.Collection;
 
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.junit.runners.Parameterized;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.MethodSource;
 
-@RunWith(Parameterized.class)
 public class ZeitraumParseTest {
 
     private static LocalTime zeitAnfang = LocalTime.of(14, 0);
@@ -33,7 +31,6 @@ public class ZeitraumParseTest {
 
     private static ZoneId MOSKAU = ZoneId.of("Europe/Moscow");
 
-    @Parameterized.Parameters(name = "{index}: parse({0}) => {1}")
     public static Collection<Object[]> data() {
         return Arrays.asList(new Object[][] {
             { "12.7.2017 14:00 Europe/Moscow, 13.09.2018 15:45 Europe/Moscow",
@@ -52,16 +49,19 @@ public class ZeitraumParseTest {
             { "14:00:00, 15:45:00", Zeitraum.of(zeitAnfang, zeitEnde) },
             { "14:00, 90min", Zeitraum.of(zeitAnfang, dauerDuration) } });
     }
-
-    @Parameterized.Parameter
     public String input;
-
-    @Parameterized.Parameter(1)
     public Zeitraum expected;
 
-    @Test
-    public void parse() throws Exception {
+    @MethodSource("data")
+    @ParameterizedTest(name = "{index}: parse({0}) => {1}")
+    public void parse(String input, Zeitraum expected) throws Exception {
+        initZeitraumParseTest(input, expected);
         assertEquals(expected, Zeitraum.parse(input));
+    }
+
+    public void initZeitraumParseTest(String input, Zeitraum expected) {
+        this.input = input;
+        this.expected = expected;
     }
 
 }
