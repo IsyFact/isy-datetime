@@ -1,20 +1,19 @@
 package de.bund.bva.isyfact.datetime.core;
 
+import static org.junit.jupiter.api.Assertions.assertThrows;
+
 import java.time.DateTimeException;
 import java.util.Arrays;
 import java.util.Collection;
 
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.junit.runners.Parameterized;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.MethodSource;
 
-@RunWith(Parameterized.class)
 public class UngewissesDatumTestInvalid {
 
-    @Parameterized.Parameters(name = "{index}: of(Jahr={0}, Monat={1}, Tag={2})")
     public static Collection<Object[]> data() {
         return Arrays.asList(new Object[][] {
-            // Jahr, Monat, Tag
+            // year, month, day
             { 0, 0, -1 },
             { 0, -1, 0 },
             { 0, -1, -1 },
@@ -29,18 +28,21 @@ public class UngewissesDatumTestInvalid {
             { 100, 100, 100 }
         });
     }
-
-    @Parameterized.Parameter
     public int jahr;
-
-    @Parameterized.Parameter(1)
     public int monat;
-
-    @Parameterized.Parameter(2)
     public int tag;
 
-    @Test(expected = DateTimeException.class)
-    public void ofJahrMonatTag() {
-        UngewissesDatum.of(jahr, monat, tag);
+    @MethodSource("data")
+    @ParameterizedTest(name = "{index}: of(Jahr={0}, Monat={1}, Tag={2})")
+    public void ofJahrMonatTag(int jahr, int monat, int tag) {
+        initUngewissesDatumTestInvalid(jahr, monat, tag);
+        assertThrows(DateTimeException.class, () ->
+            UngewissesDatum.of(jahr, monat, tag));
+    }
+
+    public void initUngewissesDatumTestInvalid(int jahr, int monat, int tag) {
+        this.jahr = jahr;
+        this.monat = monat;
+        this.tag = tag;
     }
 }

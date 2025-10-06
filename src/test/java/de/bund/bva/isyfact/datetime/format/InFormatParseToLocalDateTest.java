@@ -1,19 +1,16 @@
 package de.bund.bva.isyfact.datetime.format;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.Collection;
 
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.junit.runners.Parameterized;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.MethodSource;
 
-@RunWith(Parameterized.class)
 public class InFormatParseToLocalDateTest {
 
-    @Parameterized.Parameters(name = "{index}: parseToLocalDate({0}) => {1}")
     public static Collection<Object[]> data() {
         return Arrays.asList(
             new Object[][] { { "1.1.1", LocalDate.of(1, 1, 1) }, { "1.1.11", LocalDate.of(11, 1, 1) },
@@ -21,15 +18,18 @@ public class InFormatParseToLocalDateTest {
                 { "01.01.1", LocalDate.of(1, 1, 1) }, { "01.01.11", LocalDate.of(11, 1, 1) },
                 { "01.01.111", LocalDate.of(111, 1, 1) }, { "01.01.1111", LocalDate.of(1111, 1, 1) } });
     }
-
-    @Parameterized.Parameter
     public String input;
-
-    @Parameterized.Parameter(1)
     public LocalDate expected;
 
-    @Test
-    public void parseToLocalDate() {
+    @MethodSource("data")
+    @ParameterizedTest(name = "{index}: parseToLocalDate({0}) => {1}")
+    public void parseToLocalDate(String input, LocalDate expected) {
+        initInFormatParseToLocalDateTest(input, expected);
         assertEquals(expected, InFormat.parseToLocalDate(input));
+    }
+
+    public void initInFormatParseToLocalDateTest(String input, LocalDate expected) {
+        this.input = input;
+        this.expected = expected;
     }
 }

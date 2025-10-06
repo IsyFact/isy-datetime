@@ -1,6 +1,6 @@
 package de.bund.bva.isyfact.datetime.format;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -9,14 +9,11 @@ import java.time.ZoneOffset;
 import java.util.Arrays;
 import java.util.Collection;
 
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.junit.runners.Parameterized;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.MethodSource;
 
-@RunWith(Parameterized.class)
 public class InFormatParseToOffsetDateTimeTest {
 
-    @Parameterized.Parameters(name = "{index}: parseToOffsetDateTime({0}) => {1}")
     public static Collection<Object[]> data() {
         ZoneOffset zo = ZoneOffset.ofHoursMinutes(2, 30);
         LocalDate datum = LocalDate.of(2017, 8, 1);
@@ -67,15 +64,18 @@ public class InFormatParseToOffsetDateTimeTest {
             { "01.08.2017 01:23:45.123456 +02:30", OffsetDateTime.of(datum, zeitMikroSek, zo) },
             { "01.08.2017 01:23:45.123456789 +02:30", OffsetDateTime.of(datum, zeitNanoSek, zo) } });
     }
-
-    @Parameterized.Parameter
     public String input;
-
-    @Parameterized.Parameter(1)
     public OffsetDateTime expected;
 
-    @Test
-    public void parseToOffsetDateTime() {
+    @MethodSource("data")
+    @ParameterizedTest(name = "{index}: parseToOffsetDateTime({0}) => {1}")
+    public void parseToOffsetDateTime(String input, OffsetDateTime expected) {
+        initInFormatParseToOffsetDateTimeTest(input, expected);
         assertEquals(expected, InFormat.parseToOffsetDateTime(input));
+    }
+
+    public void initInFormatParseToOffsetDateTimeTest(String input, OffsetDateTime expected) {
+        this.input = input;
+        this.expected = expected;
     }
 }

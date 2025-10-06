@@ -1,18 +1,15 @@
 package de.bund.bva.isyfact.datetime.core;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.Arrays;
 import java.util.Collection;
 
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.junit.runners.Parameterized;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.MethodSource;
 
-@RunWith(Parameterized.class)
 public class UngewissesDatumTestParse {
 
-    @Parameterized.Parameters(name = "{index}: parse({0}) => {1}")
     public static Collection<Object[]> data() {
         return Arrays.asList(new Object[][] {
             { "00.00.0000", UngewissesDatum.leer() },
@@ -29,15 +26,18 @@ public class UngewissesDatumTestParse {
             { "2017-10-10", UngewissesDatum.of(2017, 10, 10) },
         });
     }
-
-    @Parameterized.Parameter
     public String input;
-
-    @Parameterized.Parameter(1)
     public UngewissesDatum expected;
 
-    @Test
-    public void parse() throws Exception {
+    @MethodSource("data")
+    @ParameterizedTest(name = "{index}: parse({0}) => {1}")
+    public void parse(String input, UngewissesDatum expected) throws Exception {
+        initUngewissesDatumTestParse(input, expected);
         assertEquals(expected, UngewissesDatum.parse(input));
+    }
+
+    public void initUngewissesDatumTestParse(String input, UngewissesDatum expected) {
+        this.input = input;
+        this.expected = expected;
     }
 }

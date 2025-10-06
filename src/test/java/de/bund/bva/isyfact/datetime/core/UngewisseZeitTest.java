@@ -1,15 +1,16 @@
 package de.bund.bva.isyfact.datetime.core;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNotEquals;
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.time.DateTimeException;
 import java.time.LocalTime;
 import java.util.Optional;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 
 public class UngewisseZeitTest {
@@ -31,14 +32,16 @@ public class UngewisseZeitTest {
         assertEquals(LocalTime.of(17, 59, 59), nurStunde.getEnde());
     }
 
-    @Test(expected = DateTimeException.class)
+    @Test
     public void ofStundeNegativ() {
-        UngewisseZeit.of(-1);
+        assertThrows(DateTimeException.class, () ->
+            UngewisseZeit.of(-1));
     }
 
-    @Test(expected = DateTimeException.class)
+    @Test
     public void ofStundeZuGross() {
-        UngewisseZeit.of(24);
+        assertThrows(DateTimeException.class, () ->
+            UngewisseZeit.of(24));
     }
 
     @Test
@@ -73,19 +76,22 @@ public class UngewisseZeitTest {
         assertEquals(UngewisseZeit.of(17, 30, 0), ofLocalTime);
     }
 
-    @Test(expected = NullPointerException.class)
+    @Test
     public void ofLocalDateNullArguments() {
-        UngewisseZeit.of(null, null);
+        assertThrows(NullPointerException.class, () ->
+            UngewisseZeit.of(null, null));
     }
 
-    @Test(expected = DateTimeException.class)
+    @Test
     public void ofLocalDateAnfageNachEnde() {
-        UngewisseZeit.of(LocalTime.of(17, 45), LocalTime.of(17, 30));
+        assertThrows(DateTimeException.class, () ->
+            UngewisseZeit.of(LocalTime.of(17, 45), LocalTime.of(17, 30)));
     }
 
-    @Test(expected = NullPointerException.class)
+    @Test
     public void parseNullArgument() {
-        UngewisseZeit.parse(null);
+        assertThrows(NullPointerException.class, () ->
+            UngewisseZeit.parse(null));
     }
 
     @Test
