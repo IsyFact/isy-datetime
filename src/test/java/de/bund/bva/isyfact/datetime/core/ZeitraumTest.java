@@ -361,7 +361,7 @@ public class ZeitraumTest {
         Zeitraum zeitraum = Zeitraum.of(anfang, ende);
 
         assertFalse(zeitraum.isInZeitraum(davor));
-        // False, if this day is not completely in the period of time
+        // False, if the day is not completely within the time period
         assertFalse(zeitraum.isInZeitraum(ueberschneidungMitAnfang));
         assertTrue(zeitraum.isInZeitraum(innerhalb));
         assertFalse(zeitraum.isInZeitraum(ueberschneidungMitEnde));
@@ -511,7 +511,7 @@ public class ZeitraumTest {
     @Test
     public void testEqualsWithEqualObjects() {
         assertEquals(zeitraum1, zeitraum2);
-        // for equal references we skip the rest of equal logic
+        // for identical references we skip the rest of equals logic
         assertEquals(zeitraum1, zeitraum1);
         assertEquals(zeitraum1.hashCode(), zeitraum2.hashCode());
     }
