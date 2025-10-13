@@ -6,6 +6,7 @@
 - `IFS-4764`: Bereinigung technischer Schulden
 
 ### DEPENDENCY UPGRADES
+- Update org.jacoco:jacoco-maven-plugin von Version 0.8.12 auf 0.8.14
 - Update org.apache.maven.plugins:maven-source-plugin von Version 3.2.1 auf 3.3.1
 - Update org.codehaus.mojo:tidy-maven-plugin von Version 1.3.0 auf 1.4.0
 - Update org.apache.commons:commons-text von Version 1.10.0 auf 1.14.0
