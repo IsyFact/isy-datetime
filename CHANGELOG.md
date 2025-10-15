@@ -6,6 +6,7 @@
 - `IFS-4764`: Bereinigung technischer Schulden
 
 ### DEPENDENCY UPGRADES
+- Update com.github.spotbugs:spotbugs-maven-plugin von Version 4.8.5.0 auf 4.9.7.0
 - Update org.apache.maven.plugins:maven-source-plugin von Version 3.2.1 auf 3.3.1
 - Update org.codehaus.mojo:tidy-maven-plugin von Version 1.3.0 auf 1.4.0
 - Update org.apache.commons:commons-text von Version 1.10.0 auf 1.14.0
