@@ -283,11 +283,11 @@ public class UngewissesDatum {
         } else if (anfang.equals(ende)) {
             toString = anfang.format(ddMMuuuu);
         } else if (nurJahrBekannt()) {
-            toString = String.format("xx.xx.%04d", anfang.getYear());
+            toString = "xx.xx.%04d".formatted(anfang.getYear());
         } else if (nurMonatUndJahrBekannt()) {
-            toString = String.format("xx.%02d.%04d", anfang.getMonthValue(), anfang.getYear());
+            toString = "xx.%02d.%04d".formatted(anfang.getMonthValue(), anfang.getYear());
         } else {
-            toString = String.format("%s - %s", anfang.format(ddMMuuuu), ende.format(ddMMuuuu));
+            toString = "%s - %s".formatted(anfang.format(ddMMuuuu), ende.format(ddMMuuuu));
         }
 
         return toString;
@@ -306,11 +306,11 @@ public class UngewissesDatum {
         } else if (anfang.equals(ende)) {
             return anfang.format(DateTimeFormatter.ISO_LOCAL_DATE);
         } else if (nurJahrBekannt()) {
-            return String.format("%04d-xx-xx", anfang.getYear());
+            return "%04d-xx-xx".formatted(anfang.getYear());
         } else if (nurMonatUndJahrBekannt()) {
-            return String.format("%04d-%02d-xx", anfang.getYear(), anfang.getMonthValue());
+            return "%04d-%02d-xx".formatted(anfang.getYear(), anfang.getMonthValue());
         } else {
-            return String.format("%s - %s", anfang.format(DateTimeFormatter.ISO_LOCAL_DATE), ende.format(DateTimeFormatter.ISO_LOCAL_DATE));
+            return "%s - %s".formatted(anfang.format(DateTimeFormatter.ISO_LOCAL_DATE), ende.format(DateTimeFormatter.ISO_LOCAL_DATE));
         }
     }
 
