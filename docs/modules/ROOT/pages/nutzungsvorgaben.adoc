@@ -3,6 +3,8 @@
 
 include::partial$library.adoc[]
 
+Dieser Abschnitt ist eine Änderung an der Doku zu Testzwecken.
+
 Im xref:konzept.adoc[] werden die Anforderungen und Vorgaben zu Datum und Zeit der IsyFact definiert, um eine einheitliche Umsetzung in der gesamten Anwendungslandschaft zu gewährleisten.
 
 Die Nutzungsvorgaben beschreiben alle Aspekte, die bei der Entwicklung eines xref:glossary::terms-definitions.adoc#glossar-it-system[IT-Systems] zu berücksichtigen sind, um die definierten Anforderungen zu erfüllen.
