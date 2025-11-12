@@ -2,6 +2,9 @@
 ### FEATURES
 - `IFS-4710`: Kennzeichnung der Lizenz vereinheitlichen
 
+### BREAKING CHANGES
+- `IFS-4922`: Aktualisierung von Java 17 auf 25
+
 ### DOKUMENTATION
 - `IFS-4764`: Bereinigung technischer Schulden
 
