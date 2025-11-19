@@ -284,11 +284,11 @@ public class UngewisseZeit {
         } else if (anfang.equals(ende)) {
             toString = anfang.format(HHmmss);
         } else if (nurStundeBekannt()) {
-            toString = String.format("%02d:xx:xx", anfang.getHour());
+            toString = "%02d:xx:xx".formatted(anfang.getHour());
         } else if (nurMinuteUndStundeBekannt()) {
-            toString = String.format("%02d:%02d:xx", anfang.getHour(), anfang.getMinute());
+            toString = "%02d:%02d:xx".formatted(anfang.getHour(), anfang.getMinute());
         } else {
-            toString = String.format("%s - %s", anfang.format(HHmmss), ende.format(HHmmss));
+            toString = "%s - %s".formatted(anfang.format(HHmmss), ende.format(HHmmss));
         }
 
         return toString;
