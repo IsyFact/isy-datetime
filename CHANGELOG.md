@@ -1,9 +1,10 @@
-# 4.1.0
+# 5.0.0
 ### FEATURES
 - `IFS-4710`: Kennzeichnung der Lizenz vereinheitlichen
 
 ### BREAKING CHANGES
 - `IFS-4922`: Aktualisierung von Java 17 auf 25
+- `IFS-4849`: Entfernt Klasse `UngewisseZeit` aus Repository ersatzlos.
 
 ### DOKUMENTATION
 - `IFS-4764`: Bereinigung technischer Schulden
