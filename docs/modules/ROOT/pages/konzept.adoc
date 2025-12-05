@@ -21,7 +21,8 @@ Anschließend werden die <<vorgaben>> zur Verwendung von Datums- und Zeitwerten 
 [[anforderungen]]
 == Anforderungen
 
-Im  Folgenden werden die Anforderungen an die Verarbeitung von Datums- und Zeitwerten definiert. Diese bilden die Grundlage für die Vorgaben im darauffolgenden Kapitel.
+Im Folgenden werden die Anforderungen an die Verarbeitung von Datums- und Zeitwerten definiert.
+Diese bilden die Grundlage für die Vorgaben im darauffolgenden Kapitel.
 
 [[definitionen]]
 === Definitionen
@@ -240,10 +241,10 @@ Die Bibliothek muss die folgenden Berechnungen auf Zeiträumen ermöglichen:
 * Prüfung, ob sich zwei Zeiträume überlappen
 
 [[ungewisse-datums-und-zeitwerte]]
-=== Ungewisse Datums- und Zeitwerte
+=== Ungewisse Datumswerte
 
-Die Bibliothek muss sogenannte _ungewisse_ Datums- und Zeitwerte verarbeiten können.
-Dabei sind Teile eines Datums- oder Zeitwerts zunächst ungewiss.
+Die Bibliothek muss sogenannte _ungewisse_ Datumswerte verarbeiten können.
+Dabei sind Teile eines Datumswerts zunächst ungewiss.
 Die Bibliothek muss die Möglichkeit vorsehen, solche ungewissen Angaben später zu konkretisieren.
 
 [[table-KonkretunDat]]
@@ -263,22 +264,9 @@ geboren. |Geburtsdatum: +
 
 
 <<table-KonkretunDat>> zeigt einen beispielhaften Verlauf einer Konkretisierung eines Datumswerts: Das Datum ist zunächst ungewiss, wird durch spätere Erkenntnisse aber schlussendlich zu einem Datum ohne Ungewissheit konkretisiert.
-Es gibt eine Einschränkung bei der Konkretisierung ungewisser Datums- und Zeitwerte.
-Da die Ungewissheit durch Zeiträume abgebildet wird, müssen ungewisse Datums- und Zeitwerte immer einen in sich abgeschlossenen Zeitraum bilden.
+Es gibt eine Einschränkung bei der Konkretisierung ungewisser Datumswerte.
+Da die Ungewissheit durch Zeiträume abgebildet wird, müssen ungewisse Datumswerte immer einen in sich abgeschlossenen Zeitraum bilden.
 Nicht abbildbar ist z.B. "Geburtsdatum: der 24. eines beliebigen Monats des Jahres 1976", da dies nicht als Zeitraum darstellbar ist.
-
-Die Anforderungen zur Konkretisierung gelten ebenso für Zeitangaben.
-<<table-KonkretunZeit>> verdeutlicht dies in einem beispielhaften Verlauf.
-
-[[table-KonkretunZeit]]
-.Konkretisierung einer ungewissen Zeit
-[cols="3,2",options="header"]
-|====
-|Erkenntnisse |Wert
-|Initiale Erkenntnis: Das Ereignis fand nach Mittag statt.             |Start des Ereignisses: 12:01 – 23:59
-|Zusätzliche Erkenntnis: Das Ereignis fand vor 18 Uhr statt.           |Start des Ereignisses: 12:01 – 17:59
-|Zusätzliche Erkenntnis: Das Ereignis fand um Viertel nach 15 Uhr statt. |Start des Ereignisses: 15:15 – 15:15
-|====
 
 [[testunterstuetzung]]
 === Testunterstützung
@@ -328,12 +316,12 @@ gängige Formate leicht ausgeben und einlesen zu können.
 Eine Reihe von Standardformaten, welche die Bibliothek unterstützen muss, sind im Kapitel <<darstellung>> beschrieben.
 
 [[ungewisse-datums--und-zeitwerte-1]]
-=== Ungewisse Datums- und Zeitwerte
+=== Ungewisse Datumwerte
 
-Die Bibliothek muss zur Behandlung ungewisser Datums- und Zeitwerte die folgende Funktionalität bereitstellen:
+Die Bibliothek muss zur Behandlung ungewisser Datumswerte die folgende Funktionalität bereitstellen:
 
-* Definition der Datenobjekte zur Verwendung ungewisser Datums- und Zeitwerte im Anwendungskern
-* Definition der Transportobjekte zur Übermittlung ungewisser Datums- und Zeitwerte über Schnittstellen
+* Definition der Datenobjekte zur Verwendung ungewisser Datumswerte im Anwendungskern
+* Definition der Transportobjekte zur Übermittlung ungewisser Datumswerte über Schnittstellen
 * Formatierung ungewisser Daten zur Anzeige
 * Einlesen ungewisser Daten nach Eingabe durch Anwender
 
@@ -366,9 +354,8 @@ Eine Übersicht dieses Vorgangs zeigt die <<table-UmsSonderNull>>.
 |Datum komplett unbekannt |00.00.0000 |Zeitraum: nicht gesetzt (null)
 |====
 
-Des Weiteren muss die Bibliothek die Eingabe unbekannter Datums- oder Zeitbestandteile mittels "x" unterstützen.
-Diese Möglichkeit wird die Eingabe unbekannter Datums- oder Zeitbestandteile mittels Nullen mittelfristig ablösen und unterstützt Eingaben im ISO-8601 Datumsformat.
-Die Eingabe mittels "x" ermöglicht die oben genannten Sonderfälle auch für Zeitwerte, bei denen im Unterschied zu Datumswerten "0" ein korrekter Wert für die jeweiligen Bestandteile (Stunde, Minute und Sekunde) ist.
+Des Weiteren muss die Bibliothek die Eingabe unbekannter Datumsbestandteile mittels "x" unterstützen.
+Diese Möglichkeit wird die Eingabe unbekannter Datumsbestandteile mittels Nullen mittelfristig ablösen und unterstützt Eingaben im ISO-8601 Datumsformat.
 Eine Übersicht der so umgesetzten Spezialfälle zeigt die <<table-UmsSonderX>>.
 
 [[table-UmsSonderX]]
@@ -387,12 +374,6 @@ nicht gesetzt (null)
 |Tag und Monat unbekannt (ISO-8601) |1966-xx-xx |Zeitraum: +
 1.1.1966 – 31.12.1966
 |Datum komplett unbekannt (ISO-8601) |xxxx-xx-xx |Zeitraum: +
-nicht gesetzt (null)
-|Sekunde unbekannt |14:34:xx |Zeitraum: +
-14:34:00 – 14:34:59
-|Sekunde und Minute unbekannt |14:xx:xx |Zeitraum: +
-14:00:00 – 14:59:59
-|Zeit komplett unbekannt |xx:xx:xx |Zeitraum: +
 nicht gesetzt (null)
 |====
 
