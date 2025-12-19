@@ -4,7 +4,13 @@ on:
   pull_request_target:
     branches:
       - develop
-    types: [opened, synchronize]
+    types:
+      - opened
+      - synchronize
+      - reopened
+      - ready_for_review
+      - labeled
+      - unlabeled
 
 permissions:
   pull-requests: write
@@ -51,6 +57,12 @@ jobs:
           echo "new_version=${{ steps.metadata.outputs.new-version }}" >> $GITHUB_ENV
           echo "old_version=${{ steps.metadata.outputs.previous-version }}" >> $GITHUB_ENV
 
+      - name: Set PR info
+        shell: bash
+        run: |
+          echo "pr_number=${{ github.event.pull_request.number }}" >> $GITHUB_ENV
+          echo "pr_url=https://github.com/${{ github.repository }}/pull/${{ github.event.pull_request.number }}" >> $GITHUB_ENV
+
       - name: Ensure Dependency Upgrades section
         shell: bash
         run: |
@@ -91,7 +103,7 @@ jobs:
             print
           }' CHANGELOG.md > "$tmp"
           mv "$tmp" CHANGELOG.md
-          sed -i "/^### DEPENDENCY UPGRADES/a - Update $pkg von Version $old_version auf $new_version" CHANGELOG.md
+          sed -i "/^### DEPENDENCY UPGRADES/a - Update $pkg von Version $old_version auf $new_version ([#$pr_number]($pr_url))" CHANGELOG.md
 
       - name: Commit & push entry
         uses: stefanzweifel/git-auto-commit-action@v6
