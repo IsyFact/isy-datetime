@@ -10,6 +10,7 @@
 - `IFS-4764`: Bereinigung technischer Schulden
 
 ### DEPENDENCY UPGRADES
+- Update org.apache.maven.plugins:maven-enforcer-plugin von Version 3.6.1 auf 3.6.2
 - Update junit-jupiter.version von Version 5.11.3 auf 5.13.4
 - Update actions/checkout von Version 4 auf 5
 - Update org.codehaus.mojo:versions-maven-plugin von Version 2.17.1 auf 2.19.1
