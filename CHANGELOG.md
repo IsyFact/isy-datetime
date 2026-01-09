@@ -10,6 +10,7 @@
 - `IFS-4764`: Bereinigung technischer Schulden
 
 ### DEPENDENCY UPGRADES
+- Update org.codehaus.mojo:versions-maven-plugin von Version 2.17.1 auf 2.19.1
 - Update org.assertj:assertj-core von Version 3.27.3 auf 3.27.6
 - Update com.github.spotbugs:spotbugs-maven-plugin von Version 4.8.5.0 auf 4.9.8.1
 - Update IsyFact/isy-github-actions-templates/.github/workflows/maven_dependency_scan_template.yml von Version 1.7.0 auf 1.8.0
