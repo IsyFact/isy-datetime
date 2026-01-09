@@ -11,6 +11,7 @@
 
 ### DEPENDENCY UPGRADES
 - Update junit-jupiter.version von Version 5.11.3 auf 5.13.4
+- Update actions/checkout von Version 4 auf 5
 - Update org.codehaus.mojo:versions-maven-plugin von Version 2.17.1 auf 2.19.1
 - Update org.assertj:assertj-core von Version 3.27.3 auf 3.27.6
 - Update com.github.spotbugs:spotbugs-maven-plugin von Version 4.8.5.0 auf 4.9.8.1
