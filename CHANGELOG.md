@@ -11,6 +11,7 @@
 
 ### DEPENDENCY UPGRADES
 - Update IsyFact/isy-github-actions-templates/.github/workflows/maven_dependency_scan_template.yml von Version 1.7.0 auf 1.8.0
+- Update IsyFact/isy-github-actions-templates/.github/workflows/next_version.yml von Version 1.7.0 auf 1.8.0
 - Update IsyFact/isy-github-actions-templates/.github/workflows/pr_agent_template.yml von Version 1.7.0 auf 1.8.0
 - Update org.apache.maven.plugins:maven-source-plugin von Version 3.2.1 auf 3.3.1
 - Update org.codehaus.mojo:tidy-maven-plugin von Version 1.3.0 auf 1.4.0
