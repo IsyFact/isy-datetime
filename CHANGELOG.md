@@ -10,6 +10,7 @@
 - `IFS-4764`: Bereinigung technischer Schulden
 
 ### DEPENDENCY UPGRADES
+- Update com.github.spotbugs:spotbugs-maven-plugin von Version 4.8.5.0 auf 4.9.8.1
 - Update IsyFact/isy-github-actions-templates/.github/workflows/maven_dependency_scan_template.yml von Version 1.7.0 auf 1.8.0
 - Update IsyFact/isy-github-actions-templates/.github/workflows/next_version.yml von Version 1.7.0 auf 1.8.0
 - Update IsyFact/isy-github-actions-templates/.github/workflows/pr_agent_template.yml von Version 1.7.0 auf 1.8.0
