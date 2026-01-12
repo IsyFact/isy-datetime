@@ -10,6 +10,7 @@
 - `IFS-4764`: Bereinigung technischer Schulden
 
 ### DEPENDENCY UPGRADES
+- Update org.apache.maven.plugins:maven-surefire-plugin von Version 3.5.3 auf 3.5.4
 - Update org.codehaus.mojo:flatten-maven-plugin von Version 1.7.2 auf 1.7.3
 - Update org.apache.maven.plugins:maven-enforcer-plugin von Version 3.6.1 auf 3.6.2
 - Update IsyFact/isy-github-actions-templates/.github/workflows/docs_build_template.yml von Version 2.1.0 auf 2.1.1
