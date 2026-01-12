@@ -11,6 +11,13 @@
 
 ### DEPENDENCY UPGRADES
 - Update org.apache.maven.plugins:maven-surefire-plugin von Version 3.5.3 auf 3.5.4
+- Update org.codehaus.mojo:flatten-maven-plugin von Version 1.7.2 auf 1.7.3
+- Update org.apache.maven.plugins:maven-enforcer-plugin von Version 3.6.1 auf 3.6.2
+- Update IsyFact/isy-github-actions-templates/.github/workflows/docs_build_template.yml von Version 2.1.0 auf 2.1.1
+- Update IsyFact/isy-github-actions-templates/.github/workflows/dependency_review_template.yml von Version 2.0.0 auf 2.1.1
+- Update IsyFact/isy-github-actions-templates/.github/workflows/maven_deploy_template.yml von Version 2.0.0 auf 2.1.1
+- Update IsyFact/isy-github-actions-templates/.github/workflows/dependabot_auto_merge_template.yml von Version 2.0.0 auf 2.1.1
+- Update IsyFact/isy-github-actions-templates/.github/workflows/maven_build_template.yml von Version 2.0.0 auf 2.1.1
 - Update junit-jupiter.version von Version 5.11.3 auf 5.13.4
 - Update actions/checkout von Version 4 auf 5
 - Update org.codehaus.mojo:versions-maven-plugin von Version 2.17.1 auf 2.19.1

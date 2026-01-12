@@ -53,7 +53,7 @@
         <!-- maven-enforcer-plugin -->
         <enforced.jdk.version>[25,26)</enforced.jdk.version>
         <enforced.maven.version>[3.6.3,4)</enforced.maven.version>
-        <maven.enforcer.plugin.version>3.6.1</maven.enforcer.plugin.version>
+        <maven.enforcer.plugin.version>3.6.2</maven.enforcer.plugin.version>
 
         <!-- Fixed patch for commons-text CVE-2022-42889 -->
         <commons-text.version>1.14.0</commons-text.version>
@@ -62,7 +62,7 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <!-- Quality Gate -->
         <tidy.pom.version>1.4.0</tidy.pom.version>
-        <flattened.pom.version>1.7.2</flattened.pom.version>
+        <flattened.pom.version>1.7.3</flattened.pom.version>
         <checkstyle.plugin.version>3.6.0</checkstyle.plugin.version>
         <isy-checkstyle-config.version>0.2.0</isy-checkstyle-config.version>
         <spotbugs.version>4.9.8.2</spotbugs.version>
