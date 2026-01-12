@@ -11,6 +11,8 @@
 
 ### DEPENDENCY UPGRADES
 - Update IsyFact/isy-github-actions-templates/.github/workflows/maven_deploy_template.yml von Version 2.0.0 auf 2.1.1
+- Update IsyFact/isy-github-actions-templates/.github/workflows/dependabot_auto_merge_template.yml von Version 2.0.0 auf 2.1.1
+- Update IsyFact/isy-github-actions-templates/.github/workflows/maven_build_template.yml von Version 2.0.0 auf 2.1.1
 - Update junit-jupiter.version von Version 5.11.3 auf 5.13.4
 - Update actions/checkout von Version 4 auf 5
 - Update org.codehaus.mojo:versions-maven-plugin von Version 2.17.1 auf 2.19.1
