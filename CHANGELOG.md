@@ -10,6 +10,7 @@
 - `IFS-4764`: Bereinigung technischer Schulden
 
 ### DEPENDENCY UPGRADES
+- Update org.apache.maven.plugins:maven-source-plugin von Version 3.3.1 auf 3.4.0
 - Update org.apache.commons:commons-text von Version 1.14.0 auf 1.15.0
 - Update stefanzweifel/git-auto-commit-action von Version 6 auf 7
 - Update IsyFact/isy-github-actions-templates/.github/workflows/commit_message_checker_template.yml von Version 2.0.0 auf 2.1.1
