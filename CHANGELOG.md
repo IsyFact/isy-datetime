@@ -12,6 +12,7 @@
 ### DEPENDENCY UPGRADES
 - Update org.apache.maven.plugins:maven-source-plugin von Version 3.3.1 auf 3.4.0
 - Update org.apache.commons:commons-text von Version 1.14.0 auf 1.15.0
+- Update stefanzweifel/git-auto-commit-action von Version 6 auf 7
 - Update org.apache.maven.plugins:maven-jar-plugin von Version 3.4.2 auf 3.5.0
 - Update org.apache.maven.plugins:maven-surefire-plugin von Version 3.5.3 auf 3.5.4
 - Update org.codehaus.mojo:flatten-maven-plugin von Version 1.7.2 auf 1.7.3
