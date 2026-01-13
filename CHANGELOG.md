@@ -10,6 +10,7 @@
 - `IFS-4764`: Bereinigung technischer Schulden
 
 ### DEPENDENCY UPGRADES
+- Update org.sonatype.central:central-publishing-maven-plugin von Version 0.8.0 auf 0.10.0
 - Update org.apache.maven.plugins:maven-jar-plugin von Version 3.4.2 auf 3.5.0
 - Update org.apache.maven.plugins:maven-surefire-plugin von Version 3.5.3 auf 3.5.4
 - Update org.codehaus.mojo:flatten-maven-plugin von Version 1.7.2 auf 1.7.3
