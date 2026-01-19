@@ -10,6 +10,7 @@
 - `IFS-4764`: Bereinigung technischer Schulden
 
 ### DEPENDENCY UPGRADES
+- Update org.codehaus.mojo:versions-maven-plugin von Version 2.20.1 auf 2.21.0
 - Update org.apache.maven.plugins:maven-source-plugin von Version 3.3.1 auf 3.4.0
 - Update org.apache.commons:commons-text von Version 1.14.0 auf 1.15.0
 - Update stefanzweifel/git-auto-commit-action von Version 6 auf 7
