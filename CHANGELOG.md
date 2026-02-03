@@ -13,6 +13,7 @@
 - Update org.codehaus.mojo:versions-maven-plugin von Version 2.20.1 auf 2.21.0
 - Update org.apache.maven.plugins:maven-compiler-plugin von Version 3.14.1 auf 3.15.0
 - Update junit-jupiter.version von Version 5.14.2 auf 5.14.3
+- Update IsyFact/isy-github-actions-templates/.github/workflows/maven_dependency_scan_template.yml von Version 2.1.1 auf 2.2.0
 - Update org.apache.maven.plugins:maven-source-plugin von Version 3.3.1 auf 3.4.0
 - Update org.apache.commons:commons-text von Version 1.14.0 auf 1.15.0
 - Update stefanzweifel/git-auto-commit-action von Version 6 auf 7
