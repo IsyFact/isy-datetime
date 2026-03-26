@@ -10,6 +10,7 @@
 - `IFS-4764`: Bereinigung technischer Schulden
 
 ### DEPENDENCY UPGRADES
+- Update org.apache.maven.plugins:maven-compiler-plugin von Version 3.14.1 auf 3.15.0
 - Update junit-jupiter.version von Version 5.14.2 auf 5.14.3
 - Update IsyFact/isy-github-actions-templates/.github/workflows/maven_dependency_scan_template.yml von Version 2.1.1 auf 2.2.0
 - Update IsyFact/isy-github-actions-templates/.github/workflows/pr_agent_template.yml von Version 2.1.1 auf 2.2.0
