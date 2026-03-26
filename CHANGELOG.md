@@ -11,6 +11,9 @@
 
 ### DEPENDENCY UPGRADES
 - Update IsyFact/isy-github-actions-templates/.github/workflows/maven_dependency_scan_template.yml von Version 2.1.1 auf 2.2.0
+- Update IsyFact/isy-github-actions-templates/.github/workflows/pr_agent_template.yml von Version 2.1.1 auf 2.2.0
+- Update IsyFact/isy-github-actions-templates/.github/workflows/maven_create_release_template.yml von Version 2.1.1 auf 2.2.0
+- Update IsyFact/isy-github-actions-templates/.github/workflows/maven_deploy_template.yml von Version 2.1.1 auf 2.2.0
 - Update org.apache.maven.plugins:maven-source-plugin von Version 3.3.1 auf 3.4.0
 - Update org.apache.commons:commons-text von Version 1.14.0 auf 1.15.0
 - Update stefanzweifel/git-auto-commit-action von Version 6 auf 7
