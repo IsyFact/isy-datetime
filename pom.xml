@@ -48,7 +48,7 @@
         <maven.source.plugin.version>3.4.0</maven.source.plugin.version>
         <junit.version>4.13.2</junit.version>
         <junit-jupiter.version>5.14.3</junit-jupiter.version>
-        <assertj-core.version>3.27.6</assertj-core.version>
+        <assertj-core.version>3.27.7</assertj-core.version>
 
         <!-- maven-enforcer-plugin -->
         <enforced.jdk.version>[25,26)</enforced.jdk.version>
