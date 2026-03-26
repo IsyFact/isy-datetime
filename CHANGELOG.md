@@ -10,6 +10,7 @@
 - `IFS-4764`: Bereinigung technischer Schulden
 
 ### DEPENDENCY UPGRADES
+- Update org.apache.maven.plugins:maven-javadoc-plugin von Version 3.3.2 auf 3.12.0
 - Update org.codehaus.mojo:versions-maven-plugin von Version 2.20.1 auf 2.21.0
 - Update org.assertj:assertj-core von Version 3.27.6 auf 3.27.7
 - Update org.apache.maven.plugins:maven-compiler-plugin von Version 3.14.1 auf 3.15.0
