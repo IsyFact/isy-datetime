@@ -11,6 +11,7 @@
 
 ### DEPENDENCY UPGRADES
 - Update org.apache.maven.plugins:maven-surefire-plugin von Version 3.5.4 auf 3.5.5
+- Update IsyFact/isy-github-actions-templates/.github/workflows/docs_build_template.yml von Version 2.2.1 auf 2.3.0
 - Update org.apache.maven.plugins:maven-javadoc-plugin von Version 3.3.2 auf 3.12.0
 - Update org.codehaus.mojo:versions-maven-plugin von Version 2.20.1 auf 2.21.0
 - Update org.assertj:assertj-core von Version 3.27.6 auf 3.27.7
