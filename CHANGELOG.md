@@ -11,6 +11,8 @@
 
 ### DEPENDENCY UPGRADES
 - Update IsyFact/isy-github-actions-templates/.github/workflows/next_version.yml von Version 2.1.1 auf 2.3.0
+- Update IsyFact/isy-github-actions-templates/.github/workflows/commit_message_checker_template.yml von Version 2.1.1 auf 2.3.0
+- Update IsyFact/isy-github-actions-templates/.github/workflows/maven_create_release_template.yml von Version 2.2.0 auf 2.3.0
 - Update org.apache.maven.plugins:maven-javadoc-plugin von Version 3.3.2 auf 3.12.0
 - Update org.codehaus.mojo:versions-maven-plugin von Version 2.20.1 auf 2.21.0
 - Update org.assertj:assertj-core von Version 3.27.6 auf 3.27.7
