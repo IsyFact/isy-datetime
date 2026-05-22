@@ -1,9 +1,8 @@
 name: Documentation Build
 
 on:
-# please activate trigger after first release after 4.0.0
-#  pull_request:
-#    types: [ opened, synchronize, reopened ]
+  pull_request:
+    types: [ opened, synchronize, reopened ]
   push:
     tags:
       - '^\\d+\\.\\d+\\.\\d+$'
