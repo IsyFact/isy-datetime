@@ -1,15 +1,33 @@
-= Konzept Datum & Zeit: Inhalt
+= Konzept Datum & Zeit
+:navtitle: Konzept
 
-// tag::inhalt[]
+include::partial$library.adoc[]
+
+Diese Seite beschreibt die konzeptionellen Grundlagen der Verarbeitung von Datums- und Zeitwerten in der IsyFact.
+Sie definiert Vorgaben für die einheitliche Verwendung von Datums- und Zeitfunktionen sowie die Behandlung von
+Datums- und Zeitwerten in Anwendungen und bildet so die Grundlage einer technisch und fachlich einheitlichen Umsetzung.
+
+Die aus diesem Konzept abgeleitete Umsetzung der Verarbeitung von Datums- und Zeitwerten im Rahmen der
+Anwendungsentwicklung ist in den xref:nutzungsvorgaben.adoc[] beschrieben.
+
+Der Baustein Datum & Zeit bedient sich Projekterfahrungen sowie Best Practices und setzt auf die Datums- und Zeitfunktionen des JSR 310 ("Date and Time API").
+
+NOTE: JSR 310: https://jcp.org/en/jsr/detail?id=310[Date and Time API]
+
+Zunächst werden die <<anforderungen>> an die Verarbeitung von Datums- und Zeitwerten definiert, welche die Grundlage für das nachfolgende Kapitel bilden.
+
+Anschließend werden die <<vorgaben>> zur Verwendung von Datums- und Zeitwerten innerhalb der Anwendungen sowie zur Umsetzung in der zu diesem Baustein gehörenden Bibliothek definiert.
+
 [[anforderungen]]
 == Anforderungen
 
-Im  Folgenden werden die Anforderungen an die Verarbeitung von Datums- und Zeitwerten definiert. Diese bilden die Grundlage für die Vorgaben im darauffolgenden Kapitel.
+Im Folgenden werden die Anforderungen an die Verarbeitung von Datums- und Zeitwerten definiert.
+Diese bilden die Grundlage für die Vorgaben im darauffolgenden Kapitel.
 
 [[definitionen]]
 === Definitionen
 
-Die folgenden Begriffe sind zentral für den Baustein „Datum und Zeit“ und werden hier definiert.
+Die folgenden Begriffe sind zentral für den Baustein "Datum und Zeit" und werden hier definiert.
 
 [[datumswert]]
 ==== Datumswert
@@ -42,9 +60,8 @@ Eine Dauer ist eine quantifizierte Menge einer Zeiteinheit (z.B. 37 Sekunden, 14
 
 Für die Zeiteinheiten gelten folgende Abkürzungen, welche für Ein- und Ausgabe benutzt werden können:
 
-//Tab1
+[[table-AbkZeitEin]]
 .Abkürzungen für Zeiteinheiten
-[id="table-AbkZeitEin",reftext="{table-caption} {counter:tables}"]
 [cols="4,6",options="header"]
 |====
 |Abkürzung |Zeiteinheit
@@ -80,7 +97,7 @@ Dazu muss standardmäßig folgendes Format benutzt werden:
 
 [frame="none"]
 |====
-^|yyyy-MM-dd'T'HH:mm:ssZ
+^m|yyyy-MM-dd'T'HH:mm:ssZ
 |====
 
 Die Angabe der Zeitzone kann nur dann entfallen, wenn sie global festgelegt wurde oder aus dem Kontext heraus
@@ -104,9 +121,8 @@ Eingaben von Datumswerten müssen Zeichenketten in folgendem Format sein:
 ^|*<Tag>.<Monat>.<Jahr> <Zeitwert>*
 |====
 
-//Tab2
+[[table-InpFormDat]]
 .Eingabeformate der Felder von Datumswerten
-[id="table-InpFormDat",reftext="{table-caption} {counter:tables}"]
 [cols="1,3,1,1",options="header"]
 |====
 |Feld |Format |Beispiel |Pflichtfeld
@@ -118,8 +134,7 @@ Eingaben von Datumswerten müssen Zeichenketten in folgendem Format sein:
 |Nein
 |====
 
-<<table-InpFormDat>> zeigt die möglichen Formate der einzelnen Felder.
-Anders als in der Anzeige sind keine textuellen Formate für z.B. Wochentage („Montag“) oder Monate („Dezember“) erlaubt. Das Jahr wird immer vollständig interpretiert und darf nicht verkürzt eingegeben werden (z.B. „69“ für „1969“). Anwendungen können eine solche Logik vorsehen, müssen die Jahreszahlen allerdings immer vollständig an den Baustein übergeben.
+Anders als in der Anzeige sind keine textuellen Formate für z.B. Wochentage ("Montag") oder Monate ("Dezember") erlaubt. Das Jahr wird immer vollständig interpretiert und darf nicht verkürzt eingegeben werden (z.B. "69" für "1969"). Anwendungen können eine solche Logik vorsehen, müssen die Jahreszahlen allerdings immer vollständig an den Baustein übergeben.
 
 [[zeitwert-1]]
 ==== Zeitwert
@@ -131,9 +146,8 @@ Eingaben von Zeitwerten müssen Zeichenketten in folgendem Format sein:
 ^|*<Stunde>:<Minute>:<Sekunde>.<Sekundenbruchteile> <Zeitzone>*
 |====
 
-//tab3
+[[table-InpFormZeit]]
 .Eingabeformate der Felder von Zeitwerten
-[id="table-InpFormZeit",reftext="{table-caption} {counter:tables}"]
 [cols="1,2,2,1",options="header"]
 |====
 |Feld |Format |Beispiel |Pflichtfeld
@@ -150,7 +164,6 @@ oder +
 CET, Europe/Berlin |Nein
 |====
 
-<<table-InpFormZeit>> zeigt die möglichen Formate der einzelnen Felder.
 Alle Angaben außer Stunden müssen vollständig sein und bei Bedarf mit einer vorangestellten Null versehen werden.
 Bei Sekundenbruchteilen reichen üblicherweise drei Nachkommastellen, was einer Genauigkeit im Millisekundenbereich entspricht.
 
@@ -164,9 +177,8 @@ Eingaben einer Dauer müssen Zeichenketten in folgendem Format sein:
 ^|*<Anzahl><Zeiteinheit> (<Anzahl><Zeiteinheit> …)*
 |====
 
-//Tab4
+[[table-InpFormdauer]]
 .Eingabeformate der Felder von Zeitwerten
-[id="table-InpFormdauer",reftext="{table-caption} {counter:tables}"]
 [cols="1,3",options="header"]
 |====
 |Feld |Format
@@ -174,7 +186,7 @@ Eingaben einer Dauer müssen Zeichenketten in folgendem Format sein:
 |Zeiteinheit |Abkürzung der Zeiteinheit (s. Tabelle <<table-AbkZeitEin>>)
 |====
 
-Eine Dauer muss mindestens eine Zeiteinheit beinhalten („37s“), kann aber auch aus mehreren bestehen („1h 28min“). Die Zeiteinheiten müssen von der gröbsten (Jahr) zur feinsten (Millisekunde) hin sortiert sein.
+Eine Dauer muss mindestens eine Zeiteinheit beinhalten ("37s"), kann aber auch aus mehreren bestehen ("1h 28min"). Die Zeiteinheiten müssen von der gröbsten Einheit (Jahr) zur feinsten (Millisekunde) hin sortiert sein.
 
 [[zeitraum-1]]
 ==== Zeitraum
@@ -187,11 +199,10 @@ So gibt es zwei Möglichkeiten, einen Zeitraum darzustellen. Entweder
 
 Die Bibliothek muss zur Eingabe eines Zeitraums diese Kombinationen von Werten unterstützen,
 deren Format gemäß der Anforderungen der Kapitel <<datumswert-1>> bis <<dauer-1>> beschaffen sein muss.
-<<table-InpFormZRaum>> zeigt Beispiele für die Eingabewerte von Zeiträumen.
+<<table-InpFormZRaum,Die folgende Tabelle>> zeigt Beispiele für die Eingabewerte von Zeiträumen.
 
-//Tab5
+[[table-InpFormZRaum]]
 .Eingabewerte für Zeiträume
-[id="table-InpFormZRaum",reftext="{table-caption} {counter:tables}"]
 [cols="1,1,2",options="header"]
 |====
 |1. Wert |2. Wert |Beispiel
@@ -200,11 +211,6 @@ deren Format gemäß der Anforderungen der Kapitel <<datumswert-1>> bis <<dauer-
 |Zeitwert |Zeitwert |13:40:00, 15:45:12
 |Zeitwert |Dauer |12:00, 90min 15s
 |====
-
-[[persistierung]]
-=== Persistierung
-
-Die Persistierung von Angaben zu Datum, Zeit, Dauer, Zeiträumen und  <<ungewisse-datums-und-zeitwerte,ungewissen Datums- und Zeitangaben>> wird durch den xref:isyfact-standards-doku:isy-persistence:konzept/vorgaben-konventionen.adoc#behandlung-von-zeitangaben[Baustein JPA/Hibernate] behandelt.
 
 [[berechnungen]]
 === Berechnungen
@@ -218,11 +224,11 @@ Die Bibliothek muss die folgenden Berechnungen auf Datums- & Zeitwerten ermögli
 
 * Chronologische Sortierung einer Menge von Datums- und Zeitwerten
 * Chronologische Vergleiche zwischen Datums- und Zeitwerten +
- („früher als“, „später als“, „gleichzeitig“)
-* Ermittlung des „Tagesdatums“ (der zeitliche Anteil eines Datumswerts wird auf 0, d.h. auf Mitternacht, gestellt)
-* Berechnung des Abstands („Dauer“) zwischen zwei Datums- oder Zeitwerten
+ ("früher als", "später als", "gleichzeitig")
+* Ermittlung des "Tagesdatums" (der zeitliche Anteil eines Datumswerts wird auf 0, d.h. auf Mitternacht, gestellt)
+* Berechnung des Abstands ("Dauer") zwischen zwei Datums- oder Zeitwerten
 * Addition und Subtraktion von Datums- und Zeitwerten mit einer Dauer
-* Prüfung, ob zwei Datumswerte für zwei direkt aufeinanderfolgende Tage stehen ("Liegt der 28.2.2016 direkt vor dem 1.3.2016?“)
+* Prüfung, ob zwei Datumswerte für zwei direkt aufeinanderfolgende Tage stehen ("Liegt der 28.2.2016 direkt vor dem 1.3.2016?")
 * Berechnung des nächsten Werktags nach einem übergebenen Datumswert
 
 [[zeitraum-2]]
@@ -235,15 +241,14 @@ Die Bibliothek muss die folgenden Berechnungen auf Zeiträumen ermöglichen:
 * Prüfung, ob sich zwei Zeiträume überlappen
 
 [[ungewisse-datums-und-zeitwerte]]
-=== Ungewisse Datums- und Zeitwerte
+=== Ungewisse Datumswerte
 
-Die Bibliothek muss sogenannte _ungewisse_ Datums- und Zeitwerte verarbeiten können.
-Dabei sind Teile eines Datums- oder Zeitwerts zunächst ungewiss.
+Die Bibliothek muss sogenannte _ungewisse_ Datumswerte verarbeiten können.
+Dabei sind Teile eines Datumswerts zunächst ungewiss.
 Die Bibliothek muss die Möglichkeit vorsehen, solche ungewissen Angaben später zu konkretisieren.
 
-//tab 6
+[[table-KonkretunDat]]
 .Konkretisierung eines ungewissen Datums
-[id="table-KonkretunDat",reftext="{table-caption} {counter:tables}"]
 [cols="3,2",options="header"]
 |====
 |Erkenntnisse |Wert
@@ -259,23 +264,9 @@ geboren. |Geburtsdatum: +
 
 
 <<table-KonkretunDat>> zeigt einen beispielhaften Verlauf einer Konkretisierung eines Datumswerts: Das Datum ist zunächst ungewiss, wird durch spätere Erkenntnisse aber schlussendlich zu einem Datum ohne Ungewissheit konkretisiert.
-Es gibt eine Einschränkung bei der Konkretisierung ungewisser Datums- und Zeitwerte.
-Da die Ungewissheit durch Zeiträume abgebildet wird, müssen ungewisse Datums- und Zeitwerte immer einen in sich abgeschlossenen Zeitraum bilden.
-Nicht abbildbar ist z.B. „Geburtsdatum: der 24.
-eines beliebigen Monats des Jahres 1976“, da dies nicht als Zeitraum darstellbar ist.
-
-Die Anforderungen zur Konkretisierung gelten ebenso für Zeitangaben.
-<<table-KonkretunZeit>> verdeutlicht dies in einem beispielhaften Verlauf.
-
-.Konkretisierung einer ungewissen Zeit
-[id="table-KonkretunZeit",reftext="{table-caption} {counter:tables}"]
-[cols="3,2",options="header"]
-|====
-|Erkenntnisse |Wert
-|Initiale Erkenntnis: Das Ereignis fand nach Mittag statt.             |Start des Ereignisses: 12:01 – 23:59
-|Zusätzliche Erkenntnis: Das Ereignis fand vor 18 Uhr statt.           |Start des Ereignisses: 12:01 – 17:59
-|Zusätzliche Erkenntnis: Das Ereignis fand um Viertel nach Drei statt. |Start des Ereignisses: 15:15 – 15:15
-|====
+Es gibt eine Einschränkung bei der Konkretisierung ungewisser Datumswerte.
+Da die Ungewissheit durch Zeiträume abgebildet wird, müssen ungewisse Datumswerte immer einen in sich abgeschlossenen Zeitraum bilden.
+Nicht abbildbar ist z.B. "Geburtsdatum: der 24. eines beliebigen Monats des Jahres 1976", da dies nicht als Zeitraum darstellbar ist.
 
 [[testunterstuetzung]]
 === Testunterstützung
@@ -302,13 +293,13 @@ Das Stammpackage für alle Klassen der Umsetzung setzt sich aus Group-ID und Art
 === Bedeutung der Standardbibliothek
 
 Die Bibliothek muss zur Umsetzung der Anforderungen so stark wie möglich auf die im JSR 310 beschriebene API setzen.
-Falls einige der Anforderungen aus dem Kapitel <<anforderungen>> komplett durch die Funktionalität dieser API abgedeckt sind, wird in den xref:nutzungsvorgaben/master.adoc[Nutzungsvorgaben] die entsprechende Verwendung der API mit Verweis auf die Standarddokumentation knapp erläutert.
+Falls einige der Anforderungen aus dem Kapitel <<anforderungen>> komplett durch die Funktionalität dieser API abgedeckt sind, wird in den xref:nutzungsvorgaben.adoc[Nutzungsvorgaben] die entsprechende Verwendung der API mit Verweis auf die Standarddokumentation knapp erläutert.
 Abweichungen von der API oder eigene Implementierungen bereits vorhandener Funktionalität müssen in den Nutzungsvorgaben begründet und beschrieben werden.
 
 [[verwendung-der-standardbibliothek]]
 === Verwendung der Standardbibliothek
 
-Innerhalb von Anwendungen können alle Typen des „JSR 310: Date and Time API“ verwendet werden, insofern dieses Konzept an anderer Stelle die Nutzung nicht weiter einschränkt.
+Innerhalb von Anwendungen können alle Typen des "JSR 310: Date and Time API" verwendet werden, insofern dieses Konzept an anderer Stelle die Nutzung nicht weiter einschränkt.
 
 Die Bibliothek muss sicherstellen, dass die gesamte Funktionalität für alle geeigneten Typen angeboten wird und an geeigneten Stellen sinnvolle Umwandlungen (d.h. ohne Verlust von Daten oder Genauigkeit) möglich sind.
 
@@ -325,36 +316,36 @@ gängige Formate leicht ausgeben und einlesen zu können.
 Eine Reihe von Standardformaten, welche die Bibliothek unterstützen muss, sind im Kapitel <<darstellung>> beschrieben.
 
 [[ungewisse-datums--und-zeitwerte-1]]
-=== Ungewisse Datums- und Zeitwerte
+=== Ungewisse Datumwerte
 
-Die Bibliothek muss zur Behandlung ungewisser Datums- und Zeitwerte die folgende Funktionalität bereitstellen:
+Die Bibliothek muss zur Behandlung ungewisser Datumswerte die folgende Funktionalität bereitstellen:
 
-* Definition der Datenobjekte zur Verwendung ungewisser Datums- und Zeitwerte im Anwendungskern
-* Definition der Transportobjekte zur Übermittlung ungewisser Datums- und Zeitwerte über Schnittstellen
+* Definition der Datenobjekte zur Verwendung ungewisser Datumswerte im Anwendungskern
+* Definition der Transportobjekte zur Übermittlung ungewisser Datumswerte über Schnittstellen
 * Formatierung ungewisser Daten zur Anzeige
 * Einlesen ungewisser Daten nach Eingabe durch Anwender
 
 Bisherige Implementierungen ungewisser Datumswerte setzen immer den Sonderfall um, bei dem entweder der Tag, Tag und Monat oder alle Teile eines Datumswerts unbekannt sind.
-Die Anzeige und Eingabe dieser unbekannten Werte erfolgt hierbei über Nullen, wie <<table-OldUmunZeitw>> zeigt.
+Die Anzeige und Eingabe dieser unbekannten Werte erfolgt hierbei über Nullen, wie die <<table-OldUmunZeitw>> zeigt.
 
+[[table-OldUmunZeitw]]
 .Bisherige Umsetzung ungewisser Datumswerte
-[id="table-OldUmunZeitw",reftext="{table-caption} {counter:tables}"]
 [cols=",,",options="header"]
 |====
 |Sonderfall |Eingabe / Darstellung |Intern
-|Tag unbekannt |00.05.1966 |Zeichenkette: „00.05.1966“
-|Tag und Monat unbekannt |00.00.1966 |Zeichenkette: „00.00.1966“
-|Datum komplett unbekannt |00.00.0000 |Zeichenkette: „00.00.0000“
+|Tag unbekannt |00.05.1966 |Zeichenkette: "00.05.1966"
+|Tag und Monat unbekannt |00.00.1966 |Zeichenkette: "00.00.1966"
+|Datum komplett unbekannt |00.00.0000 |Zeichenkette: "00.00.0000"
 |====
 
 Der Hauptnachteil dieser Umsetzung besteht darin, dass die Datumswerte durch ihre interne Darstellung als Zeichenkette nur mit großem Aufwand mit anderen Datumswerten verglichen bzw.
 in Berechnungen verwendet werden können.
 Trotzdem muss die Bibliothek ungewisse Datumswerte dieser Art einlesen und ausgeben können.
 Die Werte werden beim Einlesen intern in entsprechende Zeiträume umgewandelt und bei der Darstellung wieder in die ursprüngliche Form überführt.
-Eine Übersicht dieses Vorgangs zeigt <<table-UmsSonderNull>>.
+Eine Übersicht dieses Vorgangs zeigt die <<table-UmsSonderNull>>.
 
+[[table-UmsSonderNull]]
 .Umsetzung der Sonderfälle (mit Nullen)
-[id="table-UmsSonderNull",reftext="{table-caption} {counter:tables}"]
 [cols=",,",options="header"]
 |====
 |Sonderfall |Eingabe / Darstellung |Intern
@@ -363,13 +354,12 @@ Eine Übersicht dieses Vorgangs zeigt <<table-UmsSonderNull>>.
 |Datum komplett unbekannt |00.00.0000 |Zeitraum: nicht gesetzt (null)
 |====
 
-Des Weiteren muss die Bibliothek die Eingabe unbekannter Datums- oder Zeitbestandteile mittels „x“ unterstützen.
-Diese Möglichkeit wird die Eingabe unbekannter Datums- oder Zeitbestandteile mittels Nullen mittelfristig ablösen und unterstützt Eingaben im ISO-8601 Datumsformat.
-Die Eingabe mittels „x“ ermöglicht die oben genannten Sonderfälle auch für Zeitwerte, bei denen im Unterschied zu Datumswerten „0“ ein korrekter Wert für die jeweiligen Bestandteile (Stunde, Minute und Sekunde) ist.
-Eine Übersicht der so umgesetzten Spezialfälle zeigt <<table-UmsSonderX>>.
+Des Weiteren muss die Bibliothek die Eingabe unbekannter Datumsbestandteile mittels "x" unterstützen.
+Diese Möglichkeit wird die Eingabe unbekannter Datumsbestandteile mittels Nullen mittelfristig ablösen und unterstützt Eingaben im ISO-8601 Datumsformat.
+Eine Übersicht der so umgesetzten Spezialfälle zeigt die <<table-UmsSonderX>>.
 
-.Umsetzung der Sonderfälle (mit „x“)
-[id="table-UmsSonderX",reftext="{table-caption} {counter:tables}"]
+[[table-UmsSonderX]]
+.Umsetzung der Sonderfälle (mit "x")
 [cols=",,",options="header"]
 |====
 |Sonderfall |Eingabe / Darstellung |Intern
@@ -385,15 +375,9 @@ nicht gesetzt (null)
 1.1.1966 – 31.12.1966
 |Datum komplett unbekannt (ISO-8601) |xxxx-xx-xx |Zeitraum: +
 nicht gesetzt (null)
-|Sekunde unbekannt |14:34:xx |Zeitraum: +
-14:34:00 – 14:34:59
-|Sekunde und Minute unbekannt |14:xx:xx |Zeitraum: +
-14:00:00 – 14:59:59
-|Zeit komplett unbekannt |xx:xx:xx |Zeitraum: +
-nicht gesetzt (null)
 |====
 
-[[testunterstützung-1]]
+[[testunterstuetzung-1]]
 === Testunterstützung
 
 Die Umsetzung der Testunterstützung geschieht über das Mocken der Klasse `java.time.Clock`.
@@ -402,4 +386,3 @@ benutzen und in der Konfiguration eine `Clock` als Abhängigkeit definieren.
 Des Weiteren müssen sich auch Anwendungen an diese Vorgabe halten, um die Testunterstützung nutzen zu können.
 Insbesondere sind Aufrufe von `System.currentTimeMillis()` sowie der Varianten von `now()` auf Typen der Datums- und
 Zeittypen ohne Verwendung einer `Clock` bei Nutzung dieses Bausteins verboten!
-// end::inhalt[]

@@ -1,10 +1,11 @@
 package de.bund.bva.isyfact.datetime.core;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNotEquals;
-import static org.junit.Assert.assertNull;
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.time.DateTimeException;
 import java.time.Duration;
@@ -16,9 +17,9 @@ import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.time.temporal.ChronoUnit;
 
-import org.junit.Test;
-
 import de.bund.bva.isyfact.datetime.format.OutFormat;
+
+import org.junit.jupiter.api.Test;
 
 
 public class ZeitraumTest {
@@ -67,89 +68,106 @@ public class ZeitraumTest {
         assertEquals(zonedDateTime.plus(period), zeitraum.getEndedatumzeit());
     }
 
-    @Test(expected = NullPointerException.class)
+    @Test
     public void ofZonedDateTimeNullArguments() {
-        Zeitraum.of(null, (ZonedDateTime) null);
+        assertThrows(NullPointerException.class, () ->
+            Zeitraum.of(null, (ZonedDateTime) null));
     }
 
-    @Test(expected = NullPointerException.class)
+    @Test
     public void ofZonedDateTimeDurationNullArguments() {
-        Zeitraum.of((ZonedDateTime) null, (Duration) null);
+        assertThrows(NullPointerException.class, () ->
+            Zeitraum.of((ZonedDateTime) null, (Duration) null));
     }
 
-    @Test(expected = NullPointerException.class)
+    @Test
     public void ofZonedDateTimePeriodNullArguments() {
-        Zeitraum.of((ZonedDateTime) null, (Period) null);
+        assertThrows(NullPointerException.class, () ->
+            Zeitraum.of((ZonedDateTime) null, (Period) null));
     }
 
-    @Test(expected = NullPointerException.class)
+    @Test
     public void ofLocalDateTimeNullArguments() {
-        Zeitraum.of(null, (LocalDateTime) null);
+        assertThrows(NullPointerException.class, () ->
+            Zeitraum.of(null, (LocalDateTime) null));
     }
 
-    @Test(expected = NullPointerException.class)
+    @Test
     public void ofLocalDateTimeDurationNullArguments() {
-        Zeitraum.of((LocalDateTime) null, (Duration) null);
+        assertThrows(NullPointerException.class, () ->
+            Zeitraum.of((LocalDateTime) null, (Duration) null));
     }
 
-    @Test(expected = NullPointerException.class)
+    @Test
     public void ofLocalDateTimePeriodNullArguments() {
-        Zeitraum.of((LocalDateTime) null, (Period) null);
+        assertThrows(NullPointerException.class, () ->
+            Zeitraum.of((LocalDateTime) null, (Period) null));
     }
 
-    @Test(expected = NullPointerException.class)
+    @Test
     public void ofLocalDateNullArguments() {
-        Zeitraum.of(null, (LocalDate) null);
+        assertThrows(NullPointerException.class, () ->
+            Zeitraum.of(null, (LocalDate) null));
     }
 
-    @Test(expected = NullPointerException.class)
+    @Test
     public void ofLocalDatePeriodNullArguments() {
-        Zeitraum.of((LocalDate) null, (Period) null);
+        assertThrows(NullPointerException.class, () ->
+            Zeitraum.of((LocalDate) null, (Period) null));
     }
 
-    @Test(expected = DateTimeException.class)
+    @Test
     public void ofZonedDateTimeAnfangNachEnde() {
-        Zeitraum.of(zonedDateTime, zonedDateTime.minusDays(1));
+        assertThrows(DateTimeException.class, () ->
+            Zeitraum.of(zonedDateTime, zonedDateTime.minusDays(1)));
     }
 
-    @Test(expected = DateTimeException.class)
+    @Test
     public void ofZonedDateTimeDurationNegative() {
-        Zeitraum.of(zonedDateTime, Duration.ofDays(-1));
+        assertThrows(DateTimeException.class, () ->
+            Zeitraum.of(zonedDateTime, Duration.ofDays(-1)));
     }
 
-    @Test(expected = DateTimeException.class)
+    @Test
     public void ofZonedDateTimePeriodNegativ() {
-        Zeitraum.of(zonedDateTime, Period.ofDays(-1));
+        assertThrows(DateTimeException.class, () ->
+            Zeitraum.of(zonedDateTime, Period.ofDays(-1)));
     }
 
-    @Test(expected = DateTimeException.class)
+    @Test
     public void ofLocalDateTimeAnfangNachEnde() {
-        Zeitraum.of(localDateTime, localDateTime.minusDays(1));
+        assertThrows(DateTimeException.class, () ->
+            Zeitraum.of(localDateTime, localDateTime.minusDays(1)));
     }
 
-    @Test(expected = DateTimeException.class)
+    @Test
     public void ofLocalDateTimeDurationNegativ() {
-        Zeitraum.of(localDateTime, Duration.ofDays(-1));
+        assertThrows(DateTimeException.class, () ->
+            Zeitraum.of(localDateTime, Duration.ofDays(-1)));
     }
 
-    @Test(expected = DateTimeException.class)
+    @Test
     public void ofLocalDateTimePeriodNegativ() {
-        Zeitraum.of(localDateTime, Period.ofDays(-1));
+        assertThrows(DateTimeException.class, () ->
+            Zeitraum.of(localDateTime, Period.ofDays(-1)));
     }
 
-    @Test(expected = DateTimeException.class)
+    @Test
     public void ofLocalDateAnfangNachEnde() {
-        Zeitraum.of(localDate, localDate.minusDays(1));
+        assertThrows(DateTimeException.class, () ->
+            Zeitraum.of(localDate, localDate.minusDays(1)));
     }
 
-    @Test(expected = DateTimeException.class)
+    @Test
     public void ofLocalDatePeriodNegativ() {
-        Zeitraum.of(localDate, Period.ofDays(-1));
+        assertThrows(DateTimeException.class, () ->
+            Zeitraum.of(localDate, Period.ofDays(-1)));
     }
 
-    @Test(expected = DateTimeException.class)
+    @Test
     public void ofLocalTimeDurationNegativ() {
-        Zeitraum.of(localTime, Duration.ofHours(-1));
+        assertThrows(DateTimeException.class, () ->
+            Zeitraum.of(localTime, Duration.ofHours(-1)));
     }
 
     @Test
@@ -253,9 +271,10 @@ public class ZeitraumTest {
         assertTrue(zeitraum.isOhneDatum());
     }
 
-    @Test(expected = DateTimeException.class)
+    @Test
     public void ofLocalTimeDurationLaenger24Stunden() {
-        Zeitraum.of(localTime, Duration.ofHours(25));
+        assertThrows(DateTimeException.class, () ->
+            Zeitraum.of(localTime, Duration.ofHours(25)));
     }
 
     @Test
@@ -342,7 +361,7 @@ public class ZeitraumTest {
         Zeitraum zeitraum = Zeitraum.of(anfang, ende);
 
         assertFalse(zeitraum.isInZeitraum(davor));
-        // False, weil der Tag nicht komplett im Zeitraum liegt
+        // False, if the day is not completely within the time period
         assertFalse(zeitraum.isInZeitraum(ueberschneidungMitAnfang));
         assertTrue(zeitraum.isInZeitraum(innerhalb));
         assertFalse(zeitraum.isInZeitraum(ueberschneidungMitEnde));
@@ -492,7 +511,7 @@ public class ZeitraumTest {
     @Test
     public void testEqualsWithEqualObjects() {
         assertEquals(zeitraum1, zeitraum2);
-        // Wenn Referenzen identisch sind, wird restliche Logik von equals übersprungen
+        // for identical references we skip the rest of equals logic
         assertEquals(zeitraum1, zeitraum1);
         assertEquals(zeitraum1.hashCode(), zeitraum2.hashCode());
     }

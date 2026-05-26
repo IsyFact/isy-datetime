@@ -384,7 +384,7 @@ public abstract class InFormat {
         List<String> teile = Arrays.asList(s.trim().split("\\s+"));
 
         Map<ChronoUnit, Integer> einheitenWerte = new EnumMap<>(ChronoUnit.class);
-        einheitenPattern.forEach((einheit, v) -> einheitenWerte.put(einheit, 0));
+        einheitenPattern.forEach((einheit, _) -> einheitenWerte.put(einheit, 0));
 
         for (String teil : teile) {
             boolean noMatch = true;

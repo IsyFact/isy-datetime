@@ -23,14 +23,15 @@ Zur formatierten Ein- und Ausgabe stellt isy-datetime die Klassen __InFormat__ u
 
 ### Dokumentation
 Die Dokumentation zu Konzept und Nutzungsvorgaben des IsyFact Moduls isy-datetime ist auf den Seiten  
-[Konzept](isy-datetime-doc/modules/ROOT/pages/konzept/master.adoc) und [Nutzungsvorgaben](isy-datetime-doc/modules/ROOT/pages/nutzungsvorgaben/master.adoc) zu finden.
+[Konzept](docs/modules/ROOT/pages/konzept.adoc) und [Nutzungsvorgaben](docs/modules/ROOT/pages/nutzungsvorgaben.adoc) zu finden.
 
 ### Mithelfen
 Wir freuen uns über Beiträge zur Weiterentwicklung von isy-datetime. 
 
 ### Lizenz
 
-Dieses Projekt ist unter der Apache-2-Lizenz lizenziert. Weitere Informationen findest du in der [Lizenzdatei](license/LICENSE).
+Die Software des Projekts ist unter der Apache License, Version 2.0 ([Apache-2.0](LICENSE)) lizenziert.
+Die Dokumentation des Projekts ist unter der Namensnennung 4.0 International ([CC-BY-4.0](docs/LICENSE)) lizenziert.
 
 ### Kontakt
 

@@ -1,9 +1,10 @@
 package de.bund.bva.isyfact.datetime.util;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNull;
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.time.Clock;
 import java.time.DateTimeException;
@@ -14,8 +15,8 @@ import java.time.OffsetDateTime;
 import java.time.OffsetTime;
 import java.time.ZonedDateTime;
 
-import org.junit.After;
-import org.junit.Test;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.Test;
 
 import de.bund.bva.isyfact.datetime.test.TestClock;
 
@@ -27,7 +28,7 @@ public class DateTimeUtilTest {
 
     private static final LocalDate DATE_2017_9_1 = LocalDate.of(2017, 9, 1);
 
-    @After
+    @AfterEach
     public void setClock() {
         DateTimeUtil.setClock(Clock.systemDefaultZone());
     }
@@ -42,9 +43,10 @@ public class DateTimeUtilTest {
         assertFalse(DateTimeUtil.datumLiegtZwischen(DATE_2017_9_1, DATE_2017_7_1, DATE_2017_8_1));
     }
 
-    @Test(expected = DateTimeException.class)
+    @Test
     public void datumLiegtZwischenAnfangNachEnde() {
-        DateTimeUtil.datumLiegtZwischen(DATE_2017_7_1, DATE_2017_9_1, DATE_2017_8_1);
+        assertThrows(DateTimeException.class, () ->
+            DateTimeUtil.datumLiegtZwischen(DATE_2017_7_1, DATE_2017_9_1, DATE_2017_8_1));
     }
 
     @Test
@@ -57,9 +59,10 @@ public class DateTimeUtilTest {
         assertFalse(DateTimeUtil.datumLiegtZwischenExklusive(DATE_2017_9_1, DATE_2017_7_1, DATE_2017_8_1));
     }
 
-    @Test(expected = DateTimeException.class)
+    @Test
     public void datumLiegtZwischenExklusiveAnfangNachEnde() {
-        DateTimeUtil.datumLiegtZwischenExklusive(DATE_2017_7_1, DATE_2017_9_1, DATE_2017_8_1);
+        assertThrows(DateTimeException.class, () ->
+            DateTimeUtil.datumLiegtZwischenExklusive(DATE_2017_7_1, DATE_2017_9_1, DATE_2017_8_1));
     }
 
     @Test

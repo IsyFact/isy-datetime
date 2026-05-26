@@ -1,5 +1,5 @@
 package de.bund.bva.isyfact.datetime.core;
-
+import java.io.Serial;
 import java.io.Serializable;
 import java.time.Clock;
 import java.time.DateTimeException;
@@ -28,6 +28,7 @@ import de.bund.bva.isyfact.datetime.format.OutFormat;
  */
 public class Zeitraum implements Serializable {
 
+    @Serial
     private static final long serialVersionUID = -1694209697511614665L;
 
     private ZonedDateTime anfang;
@@ -330,41 +331,37 @@ public class Zeitraum implements Serializable {
 
         Object endeOderDauer = parseEnde(anfangUndEndeOderDauer[1]);
 
-        if (anfang instanceof ZonedDateTime) {
-            ZonedDateTime anfangZonedDateTime = (ZonedDateTime) anfang;
+        if (anfang instanceof ZonedDateTime anfangZonedDateTime) {
 
-            if (endeOderDauer instanceof ZonedDateTime) {
-                return Zeitraum.of(anfangZonedDateTime, (ZonedDateTime) endeOderDauer);
-            } else if (endeOderDauer instanceof Duration) {
-                return Zeitraum.of(anfangZonedDateTime, (Duration) endeOderDauer);
-            } else if (endeOderDauer instanceof Period) {
-                return Zeitraum.of(anfangZonedDateTime, (Period) endeOderDauer);
+            if (endeOderDauer instanceof ZonedDateTime time) {
+                return Zeitraum.of(anfangZonedDateTime, time);
+            } else if (endeOderDauer instanceof Duration duration) {
+                return Zeitraum.of(anfangZonedDateTime, duration);
+            } else if (endeOderDauer instanceof Period period) {
+                return Zeitraum.of(anfangZonedDateTime, period);
             }
-        } else if (anfang instanceof LocalDateTime) {
-            LocalDateTime anfangLocalDateTime = (LocalDateTime) anfang;
+        } else if (anfang instanceof LocalDateTime anfangLocalDateTime) {
 
-            if (endeOderDauer instanceof LocalDateTime) {
-                return Zeitraum.of(anfangLocalDateTime, (LocalDateTime) endeOderDauer);
-            } else if (endeOderDauer instanceof Duration) {
-                return Zeitraum.of(anfangLocalDateTime, (Duration) endeOderDauer);
-            } else if (endeOderDauer instanceof Period) {
-                return Zeitraum.of(anfangLocalDateTime, (Period) endeOderDauer);
+            if (endeOderDauer instanceof LocalDateTime time) {
+                return Zeitraum.of(anfangLocalDateTime, time);
+            } else if (endeOderDauer instanceof Duration duration) {
+                return Zeitraum.of(anfangLocalDateTime, duration);
+            } else if (endeOderDauer instanceof Period period) {
+                return Zeitraum.of(anfangLocalDateTime, period);
             }
-        } else if (anfang instanceof LocalDate) {
-            LocalDate anfangLocalDate = (LocalDate) anfang;
+        } else if (anfang instanceof LocalDate anfangLocalDate) {
 
-            if (endeOderDauer instanceof LocalDate) {
-                return Zeitraum.of(anfangLocalDate, (LocalDate) endeOderDauer);
-            } else if (endeOderDauer instanceof Period) {
-                return Zeitraum.of(anfangLocalDate, (Period) endeOderDauer);
+            if (endeOderDauer instanceof LocalDate date) {
+                return Zeitraum.of(anfangLocalDate, date);
+            } else if (endeOderDauer instanceof Period period) {
+                return Zeitraum.of(anfangLocalDate, period);
             }
-        } else if (anfang instanceof LocalTime) {
-            LocalTime anfangLocalTime = (LocalTime) anfang;
+        } else if (anfang instanceof LocalTime anfangLocalTime) {
 
-            if (endeOderDauer instanceof LocalTime) {
-                return Zeitraum.of(anfangLocalTime, (LocalTime) endeOderDauer);
-            } else if (endeOderDauer instanceof Duration) {
-                return Zeitraum.of(anfangLocalTime, (Duration) endeOderDauer);
+            if (endeOderDauer instanceof LocalTime time) {
+                return Zeitraum.of(anfangLocalTime, time);
+            } else if (endeOderDauer instanceof Duration duration) {
+                return Zeitraum.of(anfangLocalTime, duration);
             }
         }
 
@@ -404,7 +401,7 @@ public class Zeitraum implements Serializable {
     private static <T> T tryParse(Function<String, T> parseFunction, String text) {
         try {
             return parseFunction.apply(text);
-        } catch (DateTimeParseException e) {
+        } catch (DateTimeParseException _) {
             return null;
         }
     }
@@ -419,7 +416,7 @@ public class Zeitraum implements Serializable {
         try {
             teile[0] = text.split(", ")[0].trim();
             teile[1] = text.split(", ")[1].trim();
-        } catch (Exception e) {
+        } catch (Exception _) {
             throw new DateTimeParseException("Der String entspricht nicht dem Format \"<Anfang>, <Ende> | <Dauer>\"", text, 0);
         }
 

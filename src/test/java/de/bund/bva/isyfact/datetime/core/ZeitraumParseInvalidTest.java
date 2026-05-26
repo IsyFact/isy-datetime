@@ -1,5 +1,7 @@
 package de.bund.bva.isyfact.datetime.core;
 
+import static org.junit.jupiter.api.Assertions.assertThrows;
+
 import java.time.Duration;
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -9,11 +11,9 @@ import java.time.format.DateTimeParseException;
 import java.util.Arrays;
 import java.util.Collection;
 
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.junit.runners.Parameterized;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.MethodSource;
 
-@RunWith(Parameterized.class)
 public class ZeitraumParseInvalidTest {
 
     private static LocalTime zeitAnfang = LocalTime.of(14, 0);
@@ -30,19 +30,23 @@ public class ZeitraumParseInvalidTest {
 
     private static ZoneId BERLIN = ZoneId.of("Europe/Berlin");
 
-    @Parameterized.Parameters(name = "{index}: parse({0})")
     public static Collection<Object> data() {
         return Arrays.asList("", ",", " , ", "12.7.2017 14:00", ", 13.09.2018 15:45",
             "12.7.2017 14:00; 13.09.2018 15:45", "12.7.2017 14:00, 15:45", "12.07.2017, 15:45",
             "12.07.2017, 5h", "14:00:00, 12.07.2017", "14:00, 7d");
     }
-
-    @Parameterized.Parameter
     public String input;
 
-    @Test(expected = DateTimeParseException.class)
-    public void parse() throws Exception {
-        Zeitraum.parse(input);
+    @MethodSource("data")
+    @ParameterizedTest(name = "{index}: parse({0})")
+    public void parse(String input) throws Exception {
+        initZeitraumParseInvalidTest(input);
+        assertThrows(DateTimeParseException.class, () ->
+            Zeitraum.parse(input));
+    }
+
+    public void initZeitraumParseInvalidTest(String input) {
+        this.input = input;
     }
 
 }

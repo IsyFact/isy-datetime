@@ -6,14 +6,11 @@ import java.time.format.DateTimeParseException;
 import java.util.Arrays;
 import java.util.Collection;
 
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.junit.runners.Parameterized;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.MethodSource;
 
-@RunWith(Parameterized.class)
 public class UngewissesDatumTestParseInvalid {
 
-    @Parameterized.Parameters(name = "{index}: parse({0})")
     public static Collection<Object> data() {
         return Arrays.asList(new Object[] {
             "", "xxx", "01.2017", "10.aa.2017", "10.-5.2017", "10.00.2017", "10.00.0000", "2000.01.01",
@@ -22,12 +19,16 @@ public class UngewissesDatumTestParseInvalid {
             "2017-xx-10", "xxxx-xx-10", "xxxx-10-xx", "xxxx-08-10", " 2017-08-10", "2017-01-00",
         });
     }
-
-    @Parameterized.Parameter
     public String input;
 
-    @Test
-    public void parse() {
+    @MethodSource("data")
+    @ParameterizedTest(name = "{index}: parse({0})")
+    public void parse(String input) {
+        initUngewissesDatumTestParseInvalid(input);
         assertThatThrownBy(() -> UngewissesDatum.parse(input)).isInstanceOf(DateTimeParseException.class);
+    }
+
+    public void initUngewissesDatumTestParseInvalid(String input) {
+        this.input = input;
     }
 }

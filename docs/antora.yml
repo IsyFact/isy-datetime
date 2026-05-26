@@ -1,0 +1,6 @@
+name: datetime
+title: Baustein Datum & Zeit
+prerelease: false
+start_page: ROOT:konzept.adoc
+nav:
+- modules/ROOT/nav.adoc
