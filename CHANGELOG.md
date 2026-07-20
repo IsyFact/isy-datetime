@@ -6,6 +6,7 @@
 ### DOKUMENTATION
 
 ### DEPENDENCY UPGRADES
+- Update org.sonatype.central:central-publishing-maven-plugin von Version 0.10.0 auf 0.11.0
 - Update org.apache.maven.plugins:maven-enforcer-plugin von Version 3.6.2 auf 3.6.3
 - Update org.apache.maven.plugins:maven-surefire-plugin von Version 3.5.5 auf 3.5.6
 - Update junit-jupiter.version von Version 6.0.3 auf 6.1.2
