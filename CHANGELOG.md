@@ -6,6 +6,7 @@
 ### DOKUMENTATION
 
 ### DEPENDENCY UPGRADES
+- Update org.sonatype.central:central-publishing-maven-plugin von Version 0.10.0 auf 0.11.0
 - Update org.cyclonedx:cyclonedx-maven-plugin von Version 2.7.11 auf 2.9.2
 - Update org.apache.maven.plugins:maven-enforcer-plugin von Version 3.6.2 auf 3.6.3
 - Update org.apache.maven.plugins:maven-surefire-plugin von Version 3.5.5 auf 3.5.6
