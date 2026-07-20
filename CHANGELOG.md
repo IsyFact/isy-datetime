@@ -6,6 +6,7 @@
 ### DOKUMENTATION
 
 ### DEPENDENCY UPGRADES
+- Update org.cyclonedx:cyclonedx-maven-plugin von Version 2.7.11 auf 2.9.2
 - Update org.apache.maven.plugins:maven-enforcer-plugin von Version 3.6.2 auf 3.6.3
 - Update org.apache.maven.plugins:maven-surefire-plugin von Version 3.5.5 auf 3.5.6
 - Update junit-jupiter.version von Version 6.0.3 auf 6.1.2
