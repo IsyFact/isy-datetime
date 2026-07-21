@@ -6,6 +6,7 @@
 ### DOKUMENTATION
 
 ### DEPENDENCY UPGRADES
+- Update actions/checkout von Version 6 auf 7
 - Update IsyFact/isy-github-actions-templates/.github/workflows/dependency_review_template.yml von Version 2.3.0 auf 3.0.0
 - Update IsyFact/isy-github-actions-templates/.github/workflows/maven_create_release_template.yml von Version 2.3.0 auf 3.0.0
 - Update IsyFact/isy-github-actions-templates/.github/workflows/semgrep.yml von Version 2.5.0 auf 3.0.0
