@@ -6,6 +6,7 @@
 ### DOKUMENTATION
 
 ### DEPENDENCY UPGRADES
+- Update org.apache.maven.plugins:maven-jar-plugin von Version 3.5.0 auf 3.5.1
 - Update IsyFact/isy-github-actions-templates/.github/workflows/docs_build_template.yml von Version 2.3.0 auf 3.0.0
 - Update IsyFact/isy-github-actions-templates/.github/workflows/next_version.yml von Version 2.3.0 auf 3.0.0
 - Update actions/checkout von Version 6 auf 7
