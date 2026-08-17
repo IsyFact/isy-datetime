@@ -16,13 +16,8 @@ on:
       - pom.xml
   workflow_dispatch:
 
-permissions:
-  contents: read
-  
 jobs:
   Version:
-    permissions:
-      contents: read
     uses: IsyFact/isy-github-actions-templates/.github/workflows/next_version.yml@v3.0.0
     with:
       next-version: 5.1.0
@@ -42,8 +37,6 @@ jobs:
     if: (github.event_name == 'push' || github.event_name == 'workflow_dispatch') &&
       (github.ref == 'refs/heads/develop' || startsWith(github.ref, 'refs/heads/release/'))
     needs: [ Version, Maven ]
-    permissions:
-      contents: read
     uses: IsyFact/isy-github-actions-templates/.github/workflows/maven_deploy_template.yml@v3.0.0
     with:
       version: ${{ needs.Version.outputs.next-version }}
