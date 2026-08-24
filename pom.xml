@@ -64,7 +64,7 @@
         <flattened.pom.version>1.8.0</flattened.pom.version>
         <checkstyle.plugin.version>3.6.0</checkstyle.plugin.version>
         <isy-checkstyle-config.version>0.2.0</isy-checkstyle-config.version>
-        <spotbugs.version>4.10.3.0</spotbugs.version>
+        <spotbugs.version>4.10.4.0</spotbugs.version>
         <versions.maven.plugin.version>2.21.0</versions.maven.plugin.version>
         <central-publishing-maven-plugin.version>0.11.0</central-publishing-maven-plugin.version>
     </properties>
