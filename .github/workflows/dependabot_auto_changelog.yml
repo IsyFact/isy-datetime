@@ -7,11 +7,12 @@ on:
     types: [opened, synchronize]
 
 permissions:
-  pull-requests: write
   contents: write
 
 jobs:
   add_changelog_entry:
+    permissions:
+      contents: read
     runs-on: ubuntu-latest
     # Run on dependabot PR events and on the follow-up commit created by this workflow
     if: ${{ github.actor == 'dependabot[bot]' || github.actor == 'github-actions[bot]' }}
