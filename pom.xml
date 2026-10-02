@@ -39,20 +39,20 @@
         <revision>0.0.0-SNAPSHOT</revision>
         <maven.compiler.release>25</maven.compiler.release>
         <maven.compiler.version>3.15.0</maven.compiler.version>
-        <maven.surefire.version>3.5.5</maven.surefire.version>
-        <maven.jar.version>3.5.0</maven.jar.version>
+        <maven.surefire.version>3.5.6</maven.surefire.version>
+        <maven.jar.version>3.5.1</maven.jar.version>
         <maven.deploy.version>2.8.2</maven.deploy.version>
-        <maven.jacoco.version>0.8.14</maven.jacoco.version>
-        <maven.cyclondx.version>2.7.11</maven.cyclondx.version>
+        <maven.jacoco.version>0.8.15</maven.jacoco.version>
+        <maven.cyclondx.version>2.9.2</maven.cyclondx.version>
         <maven.javadoc.plugin.version>3.12.0</maven.javadoc.plugin.version>
         <maven.source.plugin.version>3.4.0</maven.source.plugin.version>
-        <junit-jupiter.version>6.0.3</junit-jupiter.version>
+        <junit-jupiter.version>6.1.2</junit-jupiter.version>
         <assertj-core.version>3.27.7</assertj-core.version>
 
         <!-- maven-enforcer-plugin -->
         <enforced.jdk.version>[25,26)</enforced.jdk.version>
         <enforced.maven.version>[3.6.3,4)</enforced.maven.version>
-        <maven.enforcer.plugin.version>3.6.2</maven.enforcer.plugin.version>
+        <maven.enforcer.plugin.version>3.6.3</maven.enforcer.plugin.version>
 
         <!-- Fixed patch for commons-text CVE-2022-42889 -->
         <commons-text.version>1.15.0</commons-text.version>
@@ -61,12 +61,12 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <!-- Quality Gate -->
         <tidy.pom.version>1.4.0</tidy.pom.version>
-        <flattened.pom.version>1.7.3</flattened.pom.version>
+        <flattened.pom.version>1.8.0</flattened.pom.version>
         <checkstyle.plugin.version>3.6.0</checkstyle.plugin.version>
         <isy-checkstyle-config.version>0.2.0</isy-checkstyle-config.version>
-        <spotbugs.version>4.9.8.3</spotbugs.version>
+        <spotbugs.version>4.10.3.0</spotbugs.version>
         <versions.maven.plugin.version>2.21.0</versions.maven.plugin.version>
-        <central-publishing-maven-plugin.version>0.10.0</central-publishing-maven-plugin.version>
+        <central-publishing-maven-plugin.version>0.11.0</central-publishing-maven-plugin.version>
     </properties>
 
     <dependencies>
